@@ -50,7 +50,10 @@ YEAR = 3153602.92
 -- Formatted for the year - month - day, hour : minute : seconds
 --print( os.date("*** Timestamp = %Y-%m-%dT%X%z") )
 
-print( os.date("*** Timestamp = %A, %m %d, %Y") )
+print( os.date("*** Timestamp = %A, %m %d, %Y"))
+
+print("*** Date =", (os.time() - (YEAR*40)))
+print("^^^^", YEAR*40)
 
 
 ---------------------------------------------------------------------------------------------------------

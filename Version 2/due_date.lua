@@ -29,6 +29,35 @@ local scene = composer.newScene( sceneName )
 ---------------------------------------------------------------------------------------------------------
 
 local background
+local now = os.time()
+local startTime = os.time()
+local endTime = 5
+
+---------------------------------------------------------------------------------------------------------
+
+local displayTime = display.newText( endTime, display.contentWidth/1.28, 178, "Helvetica", 51 )
+displayTime:setTextColor(60/255, 50/255, 100/255)
+
+
+---------------------------------------------------------------------------------------------------------
+-- -- Create countdown timer
+---------------------------------------------------------------------------------------------------------
+
+
+-- Create countdown function
+local function checkTime( event )
+
+   local now = os.time()
+   -- Display text showing the countdown to the endTime
+   displayTime.text = endTime - ( now - startTime )
+
+   if ( now > startTime + endTime ) then
+      -- Change the text to notify when the timer is done
+       displayTime.text = ( "Time's up" )
+   end
+end
+
+Runtime:addEventListener( "enterFrame", checkTime )
 
 
 -----------------------------------------------------------------------------------------
@@ -63,8 +92,8 @@ function scene:create( event )
 -----------------------------------------------------------------------------------------
 
 
--- Set the background to be white
-display.setDefault("background", 250, 255, 255)
+-- Set the background color
+display.setDefault("background", 220/255, 210/255, 205/255)
     
 ---------------------------------------------------------------------------------------------------------
 
@@ -77,7 +106,7 @@ todayText:setTextColor(60/255, 50/255, 100/255)
 sceneGroup:insert( todayWordText )
 sceneGroup:insert( todayText )
 
-if (os.date("%m")) = 02
+--if (os.date("%m")) = 02
 
 -----------------------------------------------------------------------------------------
 -- Button widgets

@@ -24,4 +24,4 @@ local composer = require( "composer" )
 -----------------------------------------------------------------------------------------
 
 -- Go to the intro screen
-composer.gotoScene( "due_date", {effect = "flipFadeOutIn", time = 1500})
+composer.gotoScene( "main_menu", {effect = "flipFadeOutIn", time = 1500})
