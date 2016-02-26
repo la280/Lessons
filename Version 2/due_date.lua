@@ -33,32 +33,6 @@ local now = os.time()
 local startTime = os.time()
 local endTime = 5
 
----------------------------------------------------------------------------------------------------------
-
-local displayTime = display.newText( endTime, display.contentWidth/1.28, 178, "Helvetica", 51 )
-displayTime:setTextColor(60/255, 50/255, 100/255)
-
-
----------------------------------------------------------------------------------------------------------
--- -- Create countdown timer
----------------------------------------------------------------------------------------------------------
-
-
--- Create countdown function
-local function checkTime( event )
-
-   local now = os.time()
-   -- Display text showing the countdown to the endTime
-   displayTime.text = endTime - ( now - startTime )
-
-   if ( now > startTime + endTime ) then
-      -- Change the text to notify when the timer is done
-       displayTime.text = ( "Time's up" )
-   end
-end
-
-Runtime:addEventListener( "enterFrame", checkTime )
-
 
 -----------------------------------------------------------------------------------------
 -- Transition functions
@@ -69,6 +43,34 @@ Runtime:addEventListener( "enterFrame", checkTime )
 local function backButtonClicked( )
 
     print("*** Back button clicked")
+
+--------------------------------------------------------------------------------
+--Custom Name textbox creation
+-----------------------------------------------------------------------------------------
+
+customNameTextField = customNameTextField
+
+local function textListener(event)
+
+    if (event.phase == "began") then
+
+    elseif (event.phase == "ended" or event.phase == "submitted") then
+
+    elseif (event.phase == "editing") then
+        
+        print(event.text)
+
+        customName = (event.text)
+
+    end
+end
+
+-- Create text field (horizontal, vertical, width, height)
+customNameTextField = native.newTextField( 380, 254, 635, 105 )
+
+customNameTextField:addEventListener("userInput", textListener)
+
+-----------------------------------------------------------------------------------------
 
     composer.gotoScene( "add_screen", {effect = "zoomInOutFade", time = 500})
 end  
@@ -103,10 +105,36 @@ todayWordText:setTextColor(60/255, 50/255, 100/255)
 todayText = display.newText ( os.date("%A %m, %d, %Y") , display.contentWidth/2, 300, "Arial", 55)
 todayText:setTextColor(60/255, 50/255, 100/255)
 
+displayTime = display.newText( endTime, display.contentWidth/1.28, 178, "Helvetica", 51 )
+displayTime:setTextColor(60/255, 50/255, 100/255)
+
 sceneGroup:insert( todayWordText )
 sceneGroup:insert( todayText )
+sceneGroup:insert( displayTime )
 
 --if (os.date("%m")) = 02
+
+
+---------------------------------------------------------------------------------------------------------
+-- -- Create countdown timer
+---------------------------------------------------------------------------------------------------------
+
+
+-- Create countdown function
+local function checkTime( event )
+
+   local now = os.time()
+   -- Display text showing the countdown to the endTime
+   displayTime.text = endTime - ( now - startTime )
+
+   if ( now > startTime + endTime ) then
+      -- Change the text to notify when the timer is done
+       displayTime.text = ( "Time's up" )
+   end
+end
+
+Runtime:addEventListener( "enterFrame", checkTime )
+
 
 -----------------------------------------------------------------------------------------
 -- Button widgets

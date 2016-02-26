@@ -23,11 +23,6 @@ sceneName = "add_screen"
 -- Create the scene object
 local scene = composer.newScene( sceneName )
 
--- Set the default text for these options
--- *** Can't remove or replace with updated options
-typeOption = "-- EMPTY --"
-classOption = "-- EMPTY --"
-
 print("*** Day =", DAY)
 
 ---------------------------------------------------------------------------------------------------------
@@ -36,35 +31,10 @@ print("*** Day =", DAY)
 
 local background
 
---------------------------------------------------------------------------------
---Custom Name textbox
--- *** Must be Global or else the "customName" variable does not get passed to other scenes
---------------------------------------------------------------------------------
-
-
-local customNameTextField
-
-local function textListener(event)
-
-    if (event.phase == "began") then
-
-    elseif (event.phase == "ended" or event.phase == "submitted") then
-
-    elseif (event.phase == "editing") then
-        
-        print(event.text)
-
-        customName = (event.text)
-
-    end
-end
-
--- Create text field (horizontal, vertical, width, height)
-customNameTextField = native.newTextField( 380, 254, 635, 105 )
-
-customNameTextField:addEventListener("userInput", textListener)
-
---sceneGroup:insert (customNameTextField)
+-- Set the default text for these options
+-- *** Can't remove or replace with updated options
+--local typeOption = "-- EMPTY --"
+--local classOption = "-- EMPTY --"
 
 
 -----------------------------------------------------------------------------------------
@@ -96,8 +66,21 @@ local function backButtonClicked( )
 
     composer.gotoScene( "main_menu", {effect = "zoomInOutFade", time = 500})
 
+-----------------------------------------------------------------------------------------
+
+    -- Create if else statement to make the show all tab button appear only when there is 
+    -- a custom name input.
+    if (customName == "") then
+
+        --Nothing happens here
+    else
+        showTasksButton.isVisible = true
+    end
+
 end  
 
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 -- When the type button is clicked, call this function
 local function typeButtonClicked( )
@@ -110,6 +93,8 @@ local function typeButtonClicked( )
     composer.gotoScene( "type_options", {effect = "zoomInOutFade", time = 500})
 end
 
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 -- When the class button is clicked, call this function
 local function classButtonClicked( )
@@ -122,6 +107,8 @@ local function classButtonClicked( )
     composer.gotoScene( "class_options", {effect = "zoomInOutFade", time = 500})
 end
 
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 -- When the due date button is clicked, call this function
 local function dueDateButtonClicked( )
@@ -174,6 +161,8 @@ sceneGroup:insert( customNameText )
 sceneGroup:insert( typeText )
 sceneGroup:insert( classText )
 sceneGroup:insert( dueDateText )
+
+customNameTextDisplay:toFront()
 
 
 -----------------------------------------------------------------------------------------
@@ -297,16 +286,14 @@ function scene:show( event )
 
     local phase = event.phase
 
-    -- The text over the type button that displays the selected type from the options screen
-    print("*** TypeOption on the add screen =", typeOption)
-        typeOptionText = display.newText ( typeOption, display.contentWidth/2, display.contentHeight/2.18, "Georgia", 62)
-        typeOptionText:setTextColor(60/255, 50/255, 100/255)
-        sceneGroup:insert( typeOptionText )
+-- The text over the type button that displays the selected type from the options screen
+    typeOptionText = display.newText ( typeOption, display.contentWidth/2, display.contentHeight/2.18, "Georgia", 62)
+    typeOptionText:setTextColor(60/255, 50/255, 100/255)
+    sceneGroup:insert( typeOptionText )
 
-    print("*** ClassOption on the add screen =", classOption)
-        classOptionText = display.newText ( classOption, display.contentWidth/2, display.contentHeight/1.478, "Georgia", 62)
-        classOptionText:setTextColor(60/255, 50/255, 100/255)
-        sceneGroup:insert( classOptionText )
+    classOptionText = display.newText ( classOption, display.contentWidth/2, display.contentHeight/1.478, "Georgia", 62)
+    classOptionText:setTextColor(60/255, 50/255, 100/255)
+    sceneGroup:insert( classOptionText )
 
     -- Called when the scene is still off screen (but is about to come on screen).   
     if ( phase == "will" ) then

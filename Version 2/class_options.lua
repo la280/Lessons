@@ -40,9 +40,39 @@ local function backButtonClicked( )
 
     print("*** Back button clicked")
 
+--------------------------------------------------------------------------------
+--Custom Name textbox creation
+-----------------------------------------------------------------------------------------
+
+customNameTextField = customNameTextField
+
+local function textListener(event)
+
+    if (event.phase == "began") then
+
+    elseif (event.phase == "ended" or event.phase == "submitted") then
+
+    elseif (event.phase == "editing") then
+        
+        print(event.text)
+
+        customName = (event.text)
+
+    end
+end
+
+-- Create text field (horizontal, vertical, width, height)
+customNameTextField = native.newTextField( 380, 254, 635, 105 )
+
+customNameTextField:addEventListener("userInput", textListener)
+
+-----------------------------------------------------------------------------------------
+
     composer.gotoScene( "add_screen", {effect = "zoomInOutFade", time = 500})
 end  
- 
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
  -- When the option 1 button is clicked, call this function
 local function classOneClicked( )
@@ -51,6 +81,34 @@ local function classOneClicked( )
 
     print("*** Class 1 button clicked")
     print("*** classOption =", classOption)
+
+--------------------------------------------------------------------------------
+--Custom Name textbox creation
+-----------------------------------------------------------------------------------------
+
+customNameTextField = customNameTextField
+
+local function textListener(event)
+
+    if (event.phase == "began") then
+
+    elseif (event.phase == "ended" or event.phase == "submitted") then
+
+    elseif (event.phase == "editing") then
+        
+        print(event.text)
+
+        customName = (event.text)
+
+    end
+end
+
+-- Create text field (horizontal, vertical, width, height)
+customNameTextField = native.newTextField( 380, 254, 635, 105 )
+
+customNameTextField:addEventListener("userInput", textListener)
+
+-----------------------------------------------------------------------------------------
 
     composer.gotoScene( "add_screen", {effect = "zoomInOutFade", time = 500})
 end 

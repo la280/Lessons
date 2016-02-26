@@ -25,10 +25,17 @@ local scene = composer.newScene( sceneName )
 
 
 ---------------------------------------------------------------------------------------------------------
--- Local variables
+-- Local and global variables
 ---------------------------------------------------------------------------------------------------------
 
 local background
+
+-- Which task the book essay is on, 0 = nothing
+bookEssayTaskNumber = ""
+
+-- This is false because the book essay option has not been selected
+--bookEssaySelected = false
+
 
 -----------------------------------------------------------------------------------------
 -- Transition functions
@@ -40,20 +47,104 @@ local function backButtonClicked( )
 
     print("*** Back button clicked")
 
+--------------------------------------------------------------------------------
+--Custom Name textbox creation
+-----------------------------------------------------------------------------------------
+
+customNameTextField = customNameTextField
+
+local function textListener(event)
+
+    if (event.phase == "began") then
+
+    elseif (event.phase == "ended" or event.phase == "submitted") then
+
+    elseif (event.phase == "editing") then
+        
+        print(event.text)
+
+        customName = (event.text)
+
+    end
+end
+
+-- Create text field (horizontal, vertical, width, height)
+customNameTextField = native.newTextField( 380, 254, 635, 105 )
+
+customNameTextField:addEventListener("userInput", textListener)
+
+-----------------------------------------------------------------------------------------
+
     composer.gotoScene( "add_screen", {effect = "zoomInOutFade", time = 500})
 end  
  
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
  -- When the option 1 button is clicked, call this function
-local function optionOneClicked( )
+function optionOneClicked( )
 
     typeOption = "Book Essay"
 
-    print("*** Option 1 button clicked")
-    print("*** TypeOption =", typeOption)
+    print("*** Option 1, book essay clicked")
+
+--------------------------------------------------------------------------------
+--Custom Name textbox creation
+-----------------------------------------------------------------------------------------
+
+customNameTextField = customNameTextField
+
+local function textListener(event)
+
+    if (event.phase == "began") then
+
+    elseif (event.phase == "ended" or event.phase == "submitted") then
+
+    elseif (event.phase == "editing") then
+        
+        print(event.text)
+
+        customName = (event.text)
+
+    end
+end
+
+-- Create text field (horizontal, vertical, width, height)
+customNameTextField = native.newTextField( 380, 254, 635, 105 )
+
+customNameTextField:addEventListener("userInput", textListener)
+
+-----------------------------------------------------------------------------------------
 
     composer.gotoScene( "add_screen", {effect = "zoomInOutFade", time = 500})
+
+-----------------------------------------------------------------------------------------
+
+-- Book essay tasks = (5): Research book
+--                    (4): Review essay's
+--                    (3): Rough draft
+--                    (2): Edit draft
+--                    (1): Final draft
+
+-- State initial book essay characteristics
+bookEssayTaskNumber = "5"
+todayTask = "Research book" 
+
+print("*** Book essay task number =", bookEssayTaskNumber)
+
+end  
+
+
+-----------------------------------------------------------------------------------------
+-- Create function that creates the book essay tasks
+-----------------------------------------------------------------------------------------      
+    
+
+function bookEssaySelected( )  
+
+    print("***Function is working")
 end 
+
 
 -----------------------------------------------------------------------------------------
 -- Global scene function - create
