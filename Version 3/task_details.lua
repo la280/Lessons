@@ -23,7 +23,7 @@ sceneName = "class_options"
 -- Create the scene object
 local scene = composer.newScene( sceneName )
 
-customName = ""
+customName = "Custom name"
 
 ---------------------------------------------------------------------------------------------------------
 -- Local variables
@@ -31,6 +31,11 @@ customName = ""
 
 local background
 local backButton
+local todayTaskTextTitle
+local todayTaskText
+local tomorrowTaskText
+local customNameText
+local noText
 
 -----------------------------------------------------------------------------------------
 -- Local Transition functions
@@ -60,24 +65,39 @@ function scene:create( event )
 -- Background & static objects
 -----------------------------------------------------------------------------------------
 
-
 -- Set the background to be white
 display.setDefault("background", 250, 255, 255)
 
 ---------------------------------------------------------------------------------------------------------
 
-todayTaskText = display.newText ( "To finish today:", 310, 130, "Arial", 80)
-todayTaskText:setTextColor(60/255, 50/255, 100/255)
+if (customName == "") then
 
-tomorrowTaskText = display.newText ( "Tomorrow:", 210, 330, "Arial", 70)
-tomorrowTaskText:setTextColor(60/255, 50/255, 100/255)
+    noText = display.newText ( "Nothing here yet", display.contentWidth/2,  300, "Arial", 80)
+    noText:setTextColor(60/255, 50/255, 100/255)
 
-customName = display.newText ( customName, 500, -70, "Arial", 60)
-customName:setTextColor(60/255, 50/255, 100/255)
+    sceneGroup:insert( noText )
 
-sceneGroup:insert( todayTaskText )
-sceneGroup:insert( tomorrowTaskText )
-sceneGroup:insert( customName )
+else
+
+    --todayTask = "Research book"
+
+    todayTaskTextTitle = display.newText ( "To finish today:", 310, 220, "Arial", 80)
+    todayTaskTextTitle:setTextColor(60/255, 50/255, 100/255)
+
+    todayTaskText = display.newText (todayTask, 240, 320, "Calibri", 65)
+    todayTaskText:setTextColor(0/255, 30/255, 200/255)
+
+    tomorrowTaskText = display.newText ( "Tomorrow:", 210, 440, "Arial", 70)
+    tomorrowTaskText:setTextColor(60/255, 50/255, 100/255)
+
+    customNameText = display.newText ( "Task 1: " .. customName, display.contentWidth/2, 90, "Calibri", 65)
+    customNameText:setTextColor(150/255, 100/255, 240/255)
+
+    sceneGroup:insert( todayTaskTextTitle )
+    sceneGroup:insert( tomorrowTaskText )
+    sceneGroup:insert( customNameText )
+
+end
 
 -----------------------------------------------------------------------------------------
 -- Button widgets
