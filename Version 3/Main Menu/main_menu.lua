@@ -18,6 +18,10 @@ local widget = require( "widget" )
 
 -- Load background colours code, local to this scene
 local backgroundColours = require( "Background.Background colours" )
+ 
+variables = require( "Main Menu.variables" )
+transitionFunctions = require( "Main Menu.Transition functions" )
+actionFunctions = require( "Main Menu.Action functions" )
 
 -- Name this scene
 sceneName = "main_menu"
@@ -25,34 +29,13 @@ sceneName = "main_menu"
 -- Create the scene object
 local scene = composer.newScene( sceneName )
 
----------------------------------------------------------------------------------------------------------
--- GLOBAL VARIABLES
----------------------------------------------------------------------------------------------------------
-
-customName = ""
-typeOption = ""
-classOption = ""
-todayTask = ""
-additionalTasks = ""
-
-customNameTextField = ""
-
-dailyEndTime = ""
-now = os.time()
-
--- The number of days from today until the due date
-timeSpan = 1
-
--- Create a variable that prevents the daily workload from repeating
-callCheck = ""
-currentStep = "0"
 
 ---------------------------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 ---------------------------------------------------------------------------------------------------------
 
+
 local background
-local okayButton
 local checkButton
 local addButton
 local helpButton
@@ -60,65 +43,6 @@ local todayButton
 
 local timeSpanDays = timeSpan
 
-
------------------------------------------------------------------------------------------
--- TRANSITION BUTTON FUNCTIONS
------------------------------------------------------------------------------------------
-
-
--- When the add button is clicked, call this function
-local function addButtonClicked( )
-
-    print("*** Add button clicked")
-
-    composer.gotoScene( "add_screen", {effect = "zoomInOutFade", time = 500})
-end  
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- Create transition function to help screen
-local function helpButtonClicked( )
-
-    composer.gotoScene( "help_screen", {effect = "flipFadeOutIn", time = 500})
-end 
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- Create transition function to add screen by the edit button
-local function editButtonClicked( )
-
-    if (customName == "") then
-
-        popupText.isVisible = true
-        popupBackground.isVisible = true
-        baseBackground.isVisible = true
-
-        okayButton.isVisible = true
-        okayButton:toFront()
-
-    else 
-
-        composer.gotoScene( "add_screen", {effect = "flipFadeOutIn", time = 500})
-    end
-end
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- Create transition function to close the popup menu
-local function okayButtonClicked( ) 
-
-    print("*** Okay button clicked")
-
-    baseBackground.isVisible = false
-    popupBackground.isVisible = false
-    popupText.isVisible = false
-    okayButton.isVisible = false
-
-    showTasksButton.isVisible = true
-end 
 
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
@@ -135,61 +59,6 @@ local function checkButtonClicked( )
 
      print("*** Daily work load =", dailyWorkLoad)
 
-end 
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
- 
--- Create function that displays all the current task items
-local function tabButtonClicked( ) 
-
-    print("*** Tab button clicked")
-
-    -- Popup background that covers everything else in the scene
-    baseBackground = display.newImageRect("Images/Popup/blackBase.png", display.contentWidth, display.contentHeight * 2)
-    baseBackground.x = display.contentWidth/2
-    baseBackground.y = display.contentHeight/2
-
-    -- Set transparency of the background
-    baseBackground.alpha = 0.4
-
-    -- Popup box image
-    popupBackground = display.newImageRect("Images/Popup/PopupBackground.png", 600, 670)
-    popupBackground.x = display.contentWidth/2
-    popupBackground.y = display.contentHeight/2.9
-
-    -- Set transparency of the popup background
-    popupBackground.alpha = 0.8
-
-        if (typeOption == "Book Essay") then
-
-            -- Overlay text
-            popupText = display.newText ( "              All Tasks: \n\n 1:  Read and research \n            your book \n 2:   Review your essay \n 3:   Write a rough draft \n 4:      Edit your draft \n 5:  Write your final draft", display.contentWidth/2, display.contentHeight/3.6, "Arial", 53)
-            popupText:setTextColor(10/255, 20/255, 10/255)
-
-            showTasksButton.isVisible = false
-
-        end
-
-        okayButton.isVisible = true
-        okayButton:toFront()
-end 
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- *** Only temporary while daily timer does not work correctly
--- Create a refresh button on the home screen
-local function refreshButton( ) 
-
-    if (displayDailyTime.text == ( "!!!" )) then
-
-        print("*** Daily time =", displayDailyTime.text)
-
-    elseif (displayDailyTime.text == ( "" )) then
-
-        print("*** No daily time.")
-    end
 end 
 
 -----------------------------------------------------------------------------------------
@@ -761,8 +630,6 @@ function scene:create( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
-
 
 
 -----------------------------------------------------------------------------------------
