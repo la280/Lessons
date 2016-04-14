@@ -18,25 +18,86 @@ local composer = require( "composer" )
 local widget = require( "widget" )
 
 -- Name this scene
-sceneName = "help_screen"
+sceneName = "due_date"
 
 -- Create the scene object
 local scene = composer.newScene( sceneName )
 
+monthNumber = 4
+daysBetweenTodayAndDue = ""
 
----------------------------------------------------------------------------------------------------------
+monthName = os.date("%B")
+dayNumber = os.date("%d")
+
+
+------------------------------------------------------------------------------------------
 -- Local variables
----------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
 
 local background
 local backButton
+local blueBackground
+local blueBackground2
+local checkMarkEmpty
+local checkMarkFull
 local displayTime
 local todayText
 local todayWordText
+local dueDateWordText
+local dueDate
+local year
+
+local date
+
+local todayNumber = os.date("%d")
 
 local now = os.time()
 local startTime = os.time()
-local endTime = 15
+local endTime = 154
+
+-- Number of days in each month
+local daysInThisMonth = 30
+local daysInJanuary = 31
+local daysInFebruary = 28
+local daysInMarch = 31
+local daysInApril = 30
+local daysInMay = 31
+local daysInJune = 30
+local daysInJuly = 31
+local daysInAugust = 31
+local daysInSeptember = 30
+local daysInOctober = 31
+local daysInNovember = 30
+local daysInDecember = 31
+
+-- Number of days in each month since the beginning of the year
+local daysFromThisMonth = 0
+local daysFromJanuary = 31
+local daysFromFebruary = 59
+local daysFromMarch = 90
+local daysFromApril = 120
+local daysFromMay = 151
+local daysFromJune = 181
+local daysFromJuly = 212
+local daysFromAugust = 243
+local daysFromSeptember = 273
+local daysFromOctober = 404
+local daysFromNovember = 434
+local daysFromDecember = 465
+
+daysFromOurMonth = daysFromApril
+
+-----------------------------------------------------------------------------------------
+-- DATE AND TIME
+-----------------------------------------------------------------------------------------
+
+
+print("*** Today =", os.date("%A") ) 
+
+if ((os.date("%A")) == "Monday") then
+
+    print("*** IT WORKS!!!!!!!!!!!!!!!!!!!") 
+end
 
 
 -----------------------------------------------------------------------------------------
@@ -51,6 +112,178 @@ local function backButtonClicked( )
     composer.gotoScene( "add_screen", {effect = "zoomInOutFade", time = 500})
 end  
  
+-----------------------------------------------------------------------------------------
+
+local function monthTextFieldListener(event)
+
+    if (event.phase == "began") then
+
+    elseif (event.phase == "ended" or event.phase == "submitted") then
+
+    elseif (event.phase == "editing") then
+        
+        print(event.text)
+
+        monthName = (event.text)
+
+    end
+end
+
+-----------------------------------------------------------------------------------------
+
+local function dayNumberTextFieldListener(event)
+
+    if (event.phase == "began") then
+
+    elseif (event.phase == "ended" or event.phase == "submitted") then
+
+    elseif (event.phase == "editing") then
+        
+        print(event.text)
+
+        dayNumber = (event.text)
+
+    end
+end
+
+-----------------------------------------------------------------------------------------
+
+local function monthNumber(Event)
+
+    if (monthName == "January") then
+
+        monthNumber = 1
+        daysFromThisMonth = daysFromJanuary
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "February") then
+
+        monthNumber = 2
+        daysFromThisMonth = daysFromFebruary
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "March") then
+
+        monthNumber = 3
+        daysFromThisMonth = daysFromMarch
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "April") then
+
+        monthNumber = 4
+        daysFromThisMonth = daysFromApril
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "May") then
+
+        monthNumber = 5
+        daysFromThisMonth = daysFromMay
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "June") then
+
+        monthNumber = 6
+        daysFromThisMonth = daysFromJune
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "July") then
+
+        monthNumber = 7
+        daysFromThisMonth = daysFromJuly
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "August") then
+
+        monthNumber = 8
+        daysFromThisMonth = daysFromAugust
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "September") then
+
+        monthNumber = 9
+        daysFromThisMonth = daysFromSeptember
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "October") then
+
+        monthNumber = 10
+        daysFromThisMonth = daysFromOctober
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "November") then
+
+        monthNumber = 11
+        daysFromThisMonth = daysFromNovember
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    elseif (monthName == "December") then
+
+        monthNumber = 12
+        daysFromThisMonth = daysFromDecember
+
+        checkMarkEmpty.isVisible = false
+        checkMarkFull.isVisible = true
+
+    else
+
+        checkMarkEmpty.isVisible = true
+        checkMarkFull.isVisible = false
+
+    end
+end
+
+
+-----------------------------------------------------------------------------------------
+
+-- From today until due date
+local function daysCalculator(event)
+
+    if (dayNumber == "") then
+
+        daysBetweenTodayAndDue = ""
+
+    elseif (dayNumber ~= "") then
+        
+        daysBetweenTodayAndDue = (dayNumber - (os.date("%d"))) + daysFromThisMonth - daysFromOurMonth
+    end
+
+    -- Since in the year 2016, we are finished with these months
+    if (monthName == "January") then
+
+        monthName = "Invalid year"
+
+    elseif (monthName == "February") then
+
+        monthName = "Invalid year"
+
+    elseif (monthName == "March") then
+
+        monthName = "Invalid year"
+    end
+end
+
 
 -----------------------------------------------------------------------------------------
 -- Global scene function - create
@@ -64,37 +297,70 @@ function scene:create( event )
     local sceneGroup = self.view
 
 
-
 -----------------------------------------------------------------------------------------
 -- Background & static objects
 -----------------------------------------------------------------------------------------
 
 
 -- Set the background color
-display.setDefault("background", 220/255, 210/255, 205/255)
+display.setDefault("background", 255/255, 255/255, 255/255)
     
 ---------------------------------------------------------------------------------------------------------
 
-todayWordText = display.newText ( "Today:", 130, 200, "Arial", 65)
+todayWordText = display.newText ( "Today:", 160, 200, "Georgia", 80)
 todayWordText:setTextColor(60/255, 50/255, 100/255)
 
-todayText = display.newText ( os.date("%A %m, %d, %Y") , display.contentWidth/2, 300, "Arial", 55)
+dueDateWordText = display.newText ( "Due date:", 200, 470, "Georgia", 75)
+dueDateWordText:setTextColor(60/255, 50/255, 100/255)
+
+year = display.newText ( ", 2016", 610, 565, "Arial", 65)
+year:setTextColor(60/255, 50/255, 100/255)
+
+--monthFormat = display.newText ( "Months: full name and \n a captial in front \n ex, August", 330, 770, "Arial", 55)
+--monthFormat:setTextColor(60/255, 50/255, 100/255)
+
+blueBackground = display.newImageRect("Images/Popup/Popup-Background.png", display.contentWidth/1.02, display.contentHeight/4)
+blueBackground.x = display.contentWidth/2
+blueBackground.y = display.contentHeight/4.1
+blueBackground.alpha = 0.23
+
+blueBackground2 = display.newImageRect("Images/Popup/Popup-Background.png", display.contentWidth/1.02, display.contentHeight/4)
+blueBackground2.x = display.contentWidth/2
+blueBackground2.y = display.contentHeight/1.95
+blueBackground2.alpha = 0.23
+
+checkMarkEmpty = display.newImageRect("Images/greyCheckMark.png", 55, 70)
+checkMarkEmpty.x = display.contentWidth/16.5
+checkMarkEmpty.y = display.contentHeight/1.81
+checkMarkEmpty.isVisible = false
+
+checkMarkFull = display.newImageRect("Images/greenCheckMark.png", 55, 70)
+checkMarkFull.x = display.contentWidth/16.5
+checkMarkFull.y = display.contentHeight/1.81
+checkMarkFull.isVisible = false
+
+-- month number = %m
+todayText = display.newText ( os.date("%A, %B %d, %Y") , display.contentWidth/2, 300, "Arial", 55)
 todayText:setTextColor(60/255, 50/255, 100/255)
 
 displayTime = display.newText( endTime, display.contentWidth/1.28, 178, "Helvetica", 51 )
 displayTime:setTextColor(60/255, 50/255, 100/255)
 
 sceneGroup:insert( todayWordText )
+sceneGroup:insert( dueDateWordText )
 sceneGroup:insert( todayText )
+sceneGroup:insert( year )
+sceneGroup:insert( blueBackground )
+sceneGroup:insert( blueBackground2 )
+sceneGroup:insert( checkMarkEmpty )
+sceneGroup:insert( checkMarkFull )
 sceneGroup:insert( displayTime )
 
 displayTime.isVisible = false
 
---if (os.date("%m")) = 02
-
 
 ---------------------------------------------------------------------------------------------------------
--- -- Create countdown timer
+-- Create countdown timer
 ---------------------------------------------------------------------------------------------------------
 
 
@@ -114,10 +380,17 @@ end
 
 Runtime:addEventListener( "enterFrame", checkTime )
 
+---------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 
------------------------------------------------------------------------------------------
+-- Checks what month the user writes
+Runtime:addEventListener( "enterFrame", monthNumber )
+
+Runtime:addEventListener( "enterFrame", daysCalculator )
+
+---------------------------------------------------------------------------------------------------------
 -- Button widgets
------------------------------------------------------------------------------------------   
+---------------------------------------------------------------------------------------------------------   
 
 
 -- Creating back button
@@ -171,7 +444,20 @@ function scene:show( event )
     -- Called when the scene is now on screen 
     -- Insert code here for animations and effects
 
-    elseif ( phase == "did" ) then       
+    elseif ( phase == "did" ) then  
+
+        -- Create text field (horizontal, vertical, width, height)
+        monthTextField = native.newTextField( 230, 570, 320, 105 )
+        monthTextField:addEventListener("userInput", monthTextFieldListener)
+
+        dayNumberTextField = native.newTextField( 460, 570, 120, 105 )
+        dayNumberTextField:addEventListener("userInput", dayNumberTextFieldListener)
+
+        if (monthName ~= "") then
+
+            monthTextField.text = monthName
+            dayNumberTextField.text = dayNumber
+        end       
         
     end
 end 
@@ -187,6 +473,9 @@ function scene:hide( event )
     local phase = event.phase
 
     if ( phase == "will" ) then
+
+        monthTextField:removeSelf()
+        dayNumberTextField:removeSelf()
 
 -----------------------------------------------------------------------------------------
 

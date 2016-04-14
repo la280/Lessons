@@ -25,6 +25,11 @@ local scene = composer.newScene( sceneName )
 
 print("*** Day =", DAY)
 
+daysBetweenTodayAndDue = 0
+monthName = ""
+dayNumber = 0
+
+
 ---------------------------------------------------------------------------------------------------------
 -- Local variables
 ---------------------------------------------------------------------------------------------------------
@@ -33,7 +38,7 @@ local background
 local backButton
 local typeButton
 local classButton
-local dueDateButton
+local dueDateButton 
 
 
 -----------------------------------------------------------------------------------------
@@ -94,6 +99,7 @@ local function dueDateButtonClicked( )
     composer.gotoScene( "due_date", {effect = "zoomInOutFade", time = 500})
 end
 
+-----------------------------------------------------------------------------------------
 
 local function textListener(event)
 
@@ -109,6 +115,50 @@ local function textListener(event)
 
     end
 end
+
+-----------------------------------------------------------------------------------------
+
+local function dueDateDisplay( )
+
+    -- If there is no date set yet, display nothing
+    if (dayNumber == 0) then
+
+        dueDateDisplayText.text = ""
+
+    -- If the date is today, display nothing
+    elseif (dayNumber == os.date("%d") and monthName == os.date("%B")) then
+
+        dueDateDisplayText.text = ""
+
+    -- If the date is in the future, display the due date
+    elseif (dayNumber ~= 0) then
+
+        dueDateDisplayText.text = monthName .. " " .. dayNumber .. ", 2016"
+    end
+end
+
+
+-----------------------------------------------------------------------------------------
+
+local function daysBetweenDisplay( )
+
+    if (daysBetweenTodayAndDue == 0) then
+
+        daysBetweenDisplayText.text = ""
+
+    elseif (daysBetweenTodayAndDue ~= 0) then
+
+        if (daysBetweenTodayAndDue == 1) then
+
+            daysBetweenDisplayText.text =  daysBetweenTodayAndDue .. " day from today"
+
+        elseif (daysBetweenTodayAndDue > 1) then
+
+            daysBetweenDisplayText.text =  daysBetweenTodayAndDue .. " days from today"
+        end
+    end
+end
+
 
 -----------------------------------------------------------------------------------------
 -- Global scene function - create
@@ -158,13 +208,17 @@ classText:setTextColor(60/255, 50/255, 100/255)
 dueDateText = display.newText ( "Due date:", 195, 823, "Arial", 60)
 dueDateText:setTextColor(60/255, 50/255, 100/255)
 
+dueDateDisplayText = display.newText ( "", display.contentWidth/2, display.contentHeight/1.12, "Arial", 57)
+dueDateDisplayText:setTextColor(60/255, 50/255, 100/255)
+
+daysBetweenDisplayText = display.newText ("", display.contentWidth/2, display.contentHeight/1, "Arial", 60)
+daysBetweenDisplayText:setTextColor(60/255, 50/255, 100/255)
+
 sceneGroup:insert( customNameText )
 sceneGroup:insert( typeText )
 sceneGroup:insert( classText )
 sceneGroup:insert( dueDateText )
-
-customNameTextDisplay:toFront()
-
+sceneGroup:insert( daysBetweenDisplayText )
 
 -----------------------------------------------------------------------------------------
 -- Button widgets
@@ -266,11 +320,12 @@ dueDateButton = widget.newButton(
     } )
 
     -- Associating button widgets with this scene
-   -- sceneGroup:insert ( customNameTextField )
     sceneGroup:insert( backButton )
     sceneGroup:insert( typeButton )
     sceneGroup:insert( classButton )
     sceneGroup:insert( dueDateButton )
+
+    sceneGroup:insert( dueDateDisplayText )
 
 end
 
@@ -298,6 +353,9 @@ function scene:show( event )
     classOptionText:setTextColor(60/255, 50/255, 100/255)
     sceneGroup:insert( classOptionText )
 
+    dueDateDisplay( )
+    daysBetweenDisplay( )
+
     -- Called when the scene is still off screen (but is about to come on screen).   
     if ( phase == "will" ) then
        
@@ -308,7 +366,7 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then  
         
-    -- Create text field (horizontal, vertical, width, height)
+        -- Create text field (horizontal, vertical, width, height)
         customNameTextField = native.newTextField( 380, 254, 635, 105 )
         customNameTextField:addEventListener("userInput", textListener)   
 
@@ -316,7 +374,8 @@ function scene:show( event )
             customNameTextField.text = customName
 
         end
-        
+
+        print("Days between =", daysBetweenTodayAndDue)
     end
 end 
 

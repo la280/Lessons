@@ -16,6 +16,9 @@ local composer = require( "composer" )
 -- Use widget library
 local widget = require( "widget" )
 
+-- Use widget library
+local backgroundColours = require( "_Background colours" )
+
 -- Name this scene
 sceneName = "main_menu"
 
@@ -30,6 +33,7 @@ customName = ""
 typeOption = ""
 classOption = ""
 todayTask = ""
+additionalTasks = ""
 
 customNameTextField = ""
 
@@ -37,106 +41,11 @@ dailyEndTime = ""
 now = os.time()
 
 -- The number of days from today until the due date
--- *** Temporarily set to 8 days
-timeSpan = 8
+timeSpan = 1
 
-
------------------------------------------------------------------------------------------
--- DATE AND TIME
------------------------------------------------------------------------------------------
-
-
-    -- Number of seconds since January 1st, 1970
-    -- now = os.time()
-
-    -- -- Constant time values (in seconds)
-    -- -- 60s * 60h * 24h * 7d
-    -- MINUTE = 60
-    -- HOUR = 3600 
-    -- DAY = 86400
-    -- WEEK = 604800
-
-    -- -- The number of seconds in a year : 60s * 60min * 24h * 365days
-    -- NUM_SECONDS_YEAR = (60 * 60 * 24 * 365)
-    -- -- The number of seconds in a day
-    -- NUM_SECONDS_DAY = (60 * 60 * 24)
-
-
-
-    -- -- The weekday
-    -- --print("*** Today =", os.date("%A") ) 
-
-    -- -- Formatted for the year - month - day, hour : minute : seconds
-    -- --print( os.date("*** Timestamp = %Y-%m-%dT%X%z") )
-
-    -- print( os.date("*** Timestamp = %A, %m %d, %Y"))
-
-    -- -- Since January 1st, 1970 : number of seconds in a day * days in 46 years
-    -- secondsSince1970 = ((60 * 60 * 24) * (365.25 * 46))
-    -- print("*** Number of seconds in 46 years =", secondsSince1970)
-
-    -- -- Number of seconds in a day * 49 days since January 1st
-    -- secondsSinceJan = ((60 * 60 * 24) * 49)
-    -- print("*** Number of seconds since January 1st =", secondsSinceJan)
-
-    -- print("*** BF time =", (NUM_SECONDS_YEAR * 46) + (NUM_SECONDS_DAY * 32))
-    -- print("*** CO time =", secondsSince1970 + secondsSinceJan + (HOUR * 13) + (MINUTE * 51))
-    -- print("*** OS time =", os.time())
-
-    -- -- The time within this year
-    -- print("*** CA time =",  os.time() - (NUM_SECONDS_YEAR * 45))
-
-    -- ---------------------------------------------------------------------------------------------------------
-
-    -- -- The number of years since January 1st, 1970
-    -- yearsSince = os.time() / NUM_SECONDS_YEAR
-    -- print("*** Years since =", yearsSince)
-
-    -- thisYear = yearsSince + 1970
-    -- print("*** This year =", thisYear)
-
-    -- ---------------------------------------------------------------------------------------------------------
-
-    -- -- The time within this year
-    -- timeWithinYear = os.time() - (NUM_SECONDS_YEAR * 45)
-
-    -- thisDay = timeWithinYear / (60 * 60 * 24)
-
-    -- print("*** Days since =", thisDay)
-
-
-    -- -- The number of days since January 1st, 1970
-    -- daysSince = os.time() / NUM_SECONDS_DAY
-    -- print("*** Days since =", daysSince)
-
-    -- thisDay = daysSince / 365
-
-    -- print("*** This day =", thisDay)
-
-    -- -- Number of days in all months since January 1st
-    -- -- +1 since today is not considered a full day 
-    -- -- -31 days in January
-    -- print("*** This day =", (thisDay + 1) - 31)
-
-    -- if ("%m" == "01") then
-    --     print ("*** Month one")
-    -- elseif ("%m" == "02") then
-    --     print ("*** Month two")
-    -- end
-
-    ---------------------------------------------------------------------------------------------------------
-
-    -- The number of months since January 1st, 1970
-
-    -- 31 days in January
-    -- if (thisDay < 31) then
-    --     print ("*** This month is January")
-
-    -- -- Between 31 days in January and up to 60 (31 + 29 days in February)
-    -- --elseif (31 < thisDay < 60) then
-    -- elseif (thisDay > 31) then
-    --     print ("*** This month is February")
-    -- end
+-- Create a variable that prevents the daily workload from repeating
+callCheck = ""
+currentStep = "0"
 
 ---------------------------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -148,14 +57,9 @@ local okayButton
 local checkButton
 local addButton
 local helpButton
-local blackDotButton
-local whiteDotButton
-local blueDotButton
-local greenDotButton
-local purpleDotButton
-local redDotButton
 local todayButton
 
+local timeSpanDays = timeSpan
 
 -----------------------------------------------------------------------------------------
 -- TRANSITION BUTTON FUNCTIONS
@@ -272,74 +176,18 @@ end
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 
+-- *************************************
 -- Create a function that moves onto the next task since the current one is completed.
 local function checkButtonClicked( ) 
 
-    if (bookEssayTaskNumber == "5") then
+    -- The number of steps divided by how much time you have to complete it
+    dailyWorkLoad = bookEssayTaskNumber/timeSpanDays
 
-        -- The next task
-        bookEssayTaskNumber = "4"
-        todayTask = "Review essay's"
+    -- This is the number that remains constant 
+    dailyWorkLoadValue = dailyWorkLoad
 
-        todayTaskText.text = todayTask
+     print("*** Daily work load =", dailyWorkLoad)
 
-        print("*** Book essay task number =", bookEssayTaskNumber)
-        print("*** Today's task =", todayTask)
-
-    elseif (bookEssayTaskNumber == "4") then
-        
-        -- The next task
-        bookEssayTaskNumber = "3"
-        todayTask = "Rough draft" 
-
-        todayTaskText.text = todayTask
-
-        print("*** Book essay task number =", bookEssayTaskNumber)
-        print("*** Today's task =", todayTask)
-
-    elseif (bookEssayTaskNumber == "3") then
-        
-        -- The next task
-        bookEssayTaskNumber = "2"
-        todayTask = "Edit draft" 
-
-        todayTaskText.text = todayTask
-
-        print("*** Book essay task number =", bookEssayTaskNumber)
-        print("*** Today's task =", todayTask)
-
-    elseif (bookEssayTaskNumber == "2") then
-        
-        -- The next task
-        bookEssayTaskNumber = "1"
-        todayTask = "Final draft" 
-
-        todayTaskText.text = todayTask
-
-        print("*** Book essay task number =", bookEssayTaskNumber)
-        print("*** Today's task =", todayTask)
-
-    elseif (bookEssayTaskNumber == "1") then
-        
-        -- The next task
-        bookEssayTaskNumber = "0"
-        todayTask = "Completed!" 
-
-        todayTaskText.text = todayTask
-
-        print("*** Book essay task number =", bookEssayTaskNumber)
-        print("*** Today's task =", todayTask)
-
-    elseif (bookEssayTaskNumber == "0") then
-        
-        -- No more tasks
-        todayTask = "Completed!" 
-
-        todayTaskText.text = todayTask
-
-        print("*** Today's task =", todayTask)
-
-    end
 end 
 
 -----------------------------------------------------------------------------------------
@@ -400,6 +248,156 @@ end
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 
+local function nextBookEssayTaskNumber( ) 
+
+    if (bookEssayTaskNumber == "5") then
+
+        -- The next task
+        bookEssayTaskNumber = "4"
+        todayTask = "Review essay's"
+
+        todayTaskText.text = todayTask
+
+        print("*** Book essay task number =", bookEssayTaskNumber)
+       -- print("*** Today's task =", todayTask)
+
+    elseif (bookEssayTaskNumber == "4") then
+
+        -- The next task
+        bookEssayTaskNumber = "3"
+        todayTask = "Rough draft" 
+
+        todayTaskText.text = todayTask
+
+        print("*** Book essay task number =", bookEssayTaskNumber)
+
+    elseif (bookEssayTaskNumber == "3") then
+        
+        -- The next task
+        bookEssayTaskNumber = "2"
+        todayTask = "Edit draft" 
+
+        todayTaskText.text = todayTask
+
+        print("*** Book essay task number =", bookEssayTaskNumber)
+
+    elseif (bookEssayTaskNumber == "2") then
+        
+        -- The next task
+        bookEssayTaskNumber = "1"
+        todayTask = "Final draft" 
+
+        todayTaskText.text = todayTask
+
+        print("*** Book essay task number =", bookEssayTaskNumber)
+
+    elseif (bookEssayTaskNumber == "1") then
+        
+        -- The next task
+        bookEssayTaskNumber = "0"
+        todayTask = "Completed!" 
+
+        todayTaskText.text = todayTask
+
+        print("*** Today's task =", todayTask)
+
+    elseif (bookEssayTaskNumber == "0") then
+        
+        -- No more tasks
+        todayTask = "Completed!" 
+
+        todayTaskText.text = todayTask
+
+        print("*** Today's task =", todayTask)
+
+    end
+end 
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+-- Prep for next timer
+local function timerSetUp( ) 
+
+  -- Reset the visual timer
+  dailyEndTime = 5
+  displayDailyTime.text = dailyEndTime
+
+  -- Initial time
+  dailyStartTime = os.time()
+end 
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+-- Increase workload each finished day
+local function increaseDailyWorkload( ) 
+
+  dailyWorkLoad = dailyWorkLoad + dailyWorkLoadValue
+  print("*** Daily workload =", dailyWorkLoad)
+end 
+
+-----------------------------------------------------------------------------------------
+-- BOOK ESSAY WORKLOADs
+-----------------------------------------------------------------------------------------
+
+local function bookEssay2( ) 
+
+  callCheck = "0.9-1.9"
+  currentStep = "2"
+                 
+  -- Everytime this function repeats, now is always 1 second later
+  now = os.time()
+
+  -- Display text showing the countdown to the dailyEndTime
+  displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
+
+    if ( now > dailyStartTime + dailyEndTime ) then
+        
+       -- Remove this event listener so that the function does not repeat 
+       Runtime:removeEventListener( "enterFrame", checkDailyTime2 )
+
+       timeSpanDays = timeSpanDays - 1
+
+       timerSetUp( ) 
+       increaseDailyWorkload( )
+       nextBookEssayTaskNumber( )
+    end
+end 
+
+-----------------------------------------------------------------------------------------
+
+local function bookEssay3( ) 
+
+  callCheck = "1.9-2.9"
+  currentStep = "3"
+
+print("********************************")
+
+   -- Everytime this function repeats, now is always 1 second later
+   now = os.time()
+    
+   -- Display text showing the countdown to the dailyEndTime
+   displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
+
+    if ( now > dailyStartTime + dailyEndTime ) then
+
+        print("*** BETWEEN 1.9 AND 2.9!!!")
+
+       -- Remove this event listener so that the function does not repeat 
+       Runtime:removeEventListener( "enterFrame", checkDailyTime3 )
+
+       timeSpanDays = timeSpanDays - 1
+
+       timerSetUp( ) 
+       increaseDailyWorkload( ) 
+       nextBookEssayTaskNumber( )
+    end
+end           
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
 -- Create a daily workload calculator
 local function dailyWorkloadCalculation( ) 
 
@@ -408,6 +406,9 @@ local function dailyWorkloadCalculation( )
 
         -- The number of steps divided by how much time you have to complete it
         dailyWorkLoad = bookEssayTaskNumber/timeSpan
+
+        -- This is the number that remains constant 
+        dailyWorkLoadValue = dailyWorkLoad
 
          print("*** Daily work load =", dailyWorkLoad)
 
@@ -420,259 +421,388 @@ end
 -- Create a function that is called when we are working with the book essay
 local function bookEssayWorkload( ) 
 
-    -- If the workload is between 0 and 0.9
-    if  ( (dailyWorkLoad > 0) and (dailyWorkLoad < 0.9) ) then
+  if ( timeSpan == 1 ) then
 
-        print("*** Workload between 0 and 0.9")
+    todayTaskText.text = "Finish all" 
+
+  else 
+
+      -- If the workload is between 0 and 0.9
+      if  ( (dailyWorkLoad > 0) and (dailyWorkLoad < 0.9) ) then
+
+          -- The call between 0 and 0.9 for the daily workload
+          callCheck = "0-0.9"
+          currentStep = "1"
+
+          timeSpanDays = timeSpanDays - 1
+
+          print("*** Workload between 0 and 0.9")
 
 ---------------------------------------------------------------------------------------------------------
 
-        -- Separating from the timer so that this variable can have a delay with the present time so
-        -- that the calculation can be possible instead of zero.
-        dailyStartTime = os.time()
+          -- Separating from the timer so that this variable can have a delay with the present time so
+          -- that the calculation can be possible instead of zero.
+          dailyStartTime = os.time()
 
-        -- Create countdown function for one day
-        local function checkDailyTime( event )
-            
-           now = os.time()
-           dailyEndTime = 4
-            
-           -- Display text showing the countdown to the dailyEndTime
-           displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
+          -- Create countdown function for one day
+          local function checkDailyTime( event )
+              
+             now = os.time()
+             -- Number of seconds in one day
+             dailyEndTime = 5
+          
+             -- Display text showing the countdown to the dailyEndTime
+             displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
 
-            if ( now > (dailyStartTime + dailyEndTime) ) then
+              if ( now > (dailyStartTime + dailyEndTime) ) then
 
-               -- Remove this event listener so that the function does not repeat 
-               Runtime:removeEventListener( "enterFrame", checkDailyTime )
+                 -- Remove this event listener so that the function does not repeat itself
+                 Runtime:removeEventListener( "enterFrame", checkDailyTime )
 
-              -- Change the text to notify when the timer is done
-               displayDailyTime.text = ( "!!!" )  
-               print("*** Daily time =", displayDailyTime.text)
+                -- Change the text to notify when the timer is done
+                 displayDailyTime.text = ( "!!!" )  
+                 print("*** Daily time =", displayDailyTime.text)
 
-               -- After one day is finished,
-               dailyWorkLoad = dailyWorkLoad + 1
-               print("*** Daily workload =", dailyWorkLoad)
+                 timerSetUp( ) 
+                 increaseDailyWorkload( ) 
+                 nextBookEssayTaskNumber( )  
 
------------------------------------------------------------------------------------------------------
+              end
+          end
 
-                    if (bookEssayTaskNumber == "5") then
+          -- Call the checkDailyTime every second
+          Runtime:addEventListener( "enterFrame", checkDailyTime )
 
-                        -- The next task
-                        bookEssayTaskNumber = "4"
-                        todayTask = "Review essay's"
+      end
 
-                        todayTaskText.text = todayTask
+      -------------------------------------------------------------------------------------------------
 
-                        print("*** Book essay task number =", bookEssayTaskNumber)
-                       -- print("*** Today's task =", todayTask)
+          -- Create countdown function for one day
+          local function checkDailyTimeWithoutNewTask( event )
+              
+          -- This prevents the daily task from progressing on the same day 
+          if ( callCheck == "0-0.9" ) then
 
------------------------------------------------------------------------------------------------------
+             now = os.time()
+             -- Number of seconds in one day
+             dailyEndTime = 5
+          
+             -- Display text showing the countdown to the dailyEndTime
+             displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
 
-                    elseif (bookEssayTaskNumber == "4") then
-            
-                        -- The next task
-                        bookEssayTaskNumber = "3"
-                        todayTask = "Rough draft" 
+              if ( now > (dailyStartTime + dailyEndTime) ) then
 
-                        todayTaskText.text = todayTask
+                 -- Remove this event listener so that the function does not repeat itself
+                 Runtime:removeEventListener( "enterFrame", checkDailyTimeWithoutNewTask )
 
-                        print("*** Book essay task number =", bookEssayTaskNumber)
-                        --print("*** Today's task =", todayTask)
+                -- Change the text to notify when the timer is done
+                 displayDailyTime.text = ( "!!!" )  
+                 print("*** Daily time =", displayDailyTime.text)
 
-                    elseif (bookEssayTaskNumber == "3") then
-                        
-                        -- The next task
-                        bookEssayTaskNumber = "2"
-                        todayTask = "Edit draft" 
+                 timerSetUp( ) 
+                 increaseDailyWorkload( ) 
 
-                        todayTaskText.text = todayTask
+              end
+          end
+      end
 
-                        print("*** Book essay task number =", bookEssayTaskNumber)
-                        --print("*** Today's task =", todayTask)
+          -- Call the checkDailyTime every second
+          Runtime:addEventListener( "enterFrame", checkDailyTimeWithoutNewTask )
 
-                    elseif (bookEssayTaskNumber == "2") then
-                        
-                        -- The next task
-                        bookEssayTaskNumber = "1"
-                        todayTask = "Final draft" 
+  ----------------------------------------------------------------------------------------------------------   
 
-                        todayTaskText.text = todayTask
+      timerSetUp( )
 
-                        print("*** Book essay task number =", bookEssayTaskNumber)
-                        --print("*** Today's task =", todayTask)
-
-                    elseif (bookEssayTaskNumber == "1") then
-                        
-                        -- The next task
-                        bookEssayTaskNumber = "0"
-                        todayTask = "Completed!" 
-
-                        todayTaskText.text = todayTask
-
-                        print("*** Today's task =", todayTask)
-
-                    elseif (bookEssayTaskNumber == "0") then
-                        
-                        -- No more tasks
-                        todayTask = "Completed!" 
-
-                        todayTaskText.text = todayTask
-
-                        print("*** Today's task =", todayTask)
-
-                    end -- Closes elseif statement
-
--------------------------------------------------------------------------------------------
-       
-            end  -- Closes time check
-
-        end -- Closes function
-
-        -- Call the checkDailyTime every second
-        Runtime:addEventListener( "enterFrame", checkDailyTime )
-
-    end -- Closes workload
-
------------------------------------------------------------------------------------------   
-
-    local function checkDailyTime2( event )
+      local function checkDailyTime2( event )
 
         if ( (dailyWorkLoad > 0.9) and (dailyWorkLoad < 1.9) ) then
 
-             print("*** Workload between 0.9 and 1.9")
+            if ( currentStep == "0" ) then
 
-           now = os.time()
-           dailyEndTime = 4
-            
-           -- Display text showing the countdown to the dailyEndTime
-           displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
+              dailyEndTime = 0 
+              additionalTasksText.text = "+ Research book"
 
-                if ( now > dailyStartTime + dailyEndTime ) then
+              -- Work for step 0
+              bookEssay2( )
+              -- Work for step 1
+              bookEssay2( )
 
-                   -- Remove this event listener so that the function does not repeat 
-                   Runtime:removeEventListener( "enterFrame", checkDailyTime2 )
+            elseif ( currentStep == "1" ) then
 
-                  -- Change the text to notify when the timer is done
-                   displayDailyTime.text = ( "!!!" )  
-                   print("*** Daily time =", displayDailyTime.text)
+              additionalTasksText.text = ""
+              bookEssay2( )
+            end
+         end
+      end
 
-                   -- After one day is finished,
-                   dailyWorkLoad = dailyWorkLoad + 1
-                   print("*** Daily workload =", dailyWorkLoad)
+        -- Call the function checkDailyTime2 every second
+        Runtime:addEventListener( "enterFrame", checkDailyTime2 )
 
----------------------------------------------------------------------------------------------------------
+      -------------------------------------------------------------------------------------------------
 
-                        if (bookEssayTaskNumber == "5") then
+      -- Create countdown function for one day
+      local function checkDailyTimeWithoutNewTask2( event )
+          
+          -- This prevents the daily task from progressing on the same day 
+          if ( callCheck == "0.9-1.9" ) then
 
-                            -- The next task
-                            bookEssayTaskNumber = "4"
-                            todayTask = "Review essay's"
+             now = os.time()
+             -- Number of seconds in one day
+             dailyEndTime = 5
+          
+             -- Display text showing the countdown to the dailyEndTime
+             displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
 
-                            todayTaskText.text = todayTask
+              if ( now > (dailyStartTime + dailyEndTime) ) then
 
-                            print("*** Book essay task number =", bookEssayTaskNumber)
-                           -- print("*** Today's task =", todayTask)
+                 -- Remove this event listener so that the function does not repeat itself
+                 Runtime:removeEventListener( "enterFrame", checkDailyTimeWithoutNewTask2 )
 
-        -----------------------------------------------------------------------------------------------
+                -- Change the text to notify when the timer is done
+                 displayDailyTime.text = ( "!!!" )  
+                 print("*** Daily time =", displayDailyTime.text)
 
-                        elseif (bookEssayTaskNumber == "4") then
-                
-                            -- The next task
-                            bookEssayTaskNumber = "3"
-                            todayTask = "Rough draft" 
+                 timerSetUp( ) 
+                 increaseDailyWorkload( ) 
 
-                            todayTaskText.text = todayTask
+                 -- Check if this function needs to be called again
+                 if ( (dailyWorkLoad > 0.9) and (dailyWorkLoad < 1.9) ) then
 
-                            print("*** Book essay task number =", bookEssayTaskNumber)
-                            --print("*** Today's task =", todayTask)
+                      Runtime:addEventListener( "enterFrame", checkDailyTimeWithoutNewTask2 )
+                 end
 
-                        elseif (bookEssayTaskNumber == "3") then
-                            
-                            -- The next task
-                            bookEssayTaskNumber = "2"
-                            todayTask = "Edit draft" 
+              end
+          end
+      end
 
-                            todayTaskText.text = todayTask
+          -- Call the checkDailyTime every second
+          Runtime:addEventListener( "enterFrame", checkDailyTimeWithoutNewTask2 )
 
-                            print("*** Book essay task number =", bookEssayTaskNumber)
-                            --print("*** Today's task =", todayTask)
+  -----------------------------------------------------------------------------------------
 
-                        elseif (bookEssayTaskNumber == "2") then
-                            
-                            -- The next task
-                            bookEssayTaskNumber = "1"
-                            todayTask = "Final draft" 
+      local function checkDailyTime3( event )
 
-                            todayTaskText.text = todayTask
+          if ( (dailyWorkLoad > 1.9) and (dailyWorkLoad < 2.9) ) then
 
-                            print("*** Book essay task number =", bookEssayTaskNumber)
-                            --print("*** Today's task =", todayTask)
+              additionalTasksText.text = ""
 
-                        elseif (bookEssayTaskNumber == "1") then
-                            
-                            -- The next task
-                            bookEssayTaskNumber = "0"
-                            todayTask = "Completed!" 
+                if ( currentStep == "0" ) then
 
-                            todayTaskText.text = todayTask
+              elseif ( currentStep == "1" ) then
 
-                            print("*** Today's task =", todayTask)
+              elseif ( currentStep == "2" ) then
 
-                        elseif (bookEssayTaskNumber == "0") then
-                            
-                            -- No more tasks
-                            todayTask = "Completed!" 
+                bookEssay3( ) 
 
-                            todayTaskText.text = todayTask
+              end
+          end
+      end
 
-                            print("*** Today's task =", todayTask)
+       -- Call the function checkDailyTime3 every second
+      Runtime:addEventListener( "enterFrame", checkDailyTime3 )
 
-                        end -- Closes this elseif
+      -------------------------------------------------------------------------------------------------
 
------------------------------------------------------------------------------------------------------
-            
-                end -- Closes timecheck
+      -- Create countdown function for one day
+      local function checkDailyTimeWithoutNewTask3( event )
 
-        end -- Closes workload
+          -- This prevents the daily task from progressing on the same day 
+          if ( callCheck == "1.9-2.9" ) then
+              
+             now = os.time()
+             
+             -- Number of seconds in one day
+             dailyEndTime = 5
+          
+             -- Display text showing the countdown to the dailyEndTime
+             displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
+
+              if ( now > (dailyStartTime + dailyEndTime) ) then
+
+                 -- Remove this event listener so that the function does not repeat itself
+                 Runtime:removeEventListener( "enterFrame", checkDailyTimeWithoutNewTask3 )
+
+                -- Change the text to notify when the timer is done
+                 displayDailyTime.text = ( "!!!" )  
+                 --print("*** Daily time =", displayDailyTime.text)
+                 print("--------------------------------------------")
+
+                 timerSetUp( ) 
+                 increaseDailyWorkload( ) 
+
+                 -- Check if this function needs to be called again
+                 if ( (dailyWorkLoad > 1.9) and (dailyWorkLoad < 2.9) ) then
+
+                      Runtime:addEventListener( "enterFrame", checkDailyTimeWithoutNewTask3 )
+                 end
+
+              end
+          end 
+      end
+
+      -- Call the checkDailyTime every second
+      Runtime:addEventListener( "enterFrame", checkDailyTimeWithoutNewTask3 )
+
+  -----------------------------------------------------------------------------------------
+   
+      local function checkDailyTime4( event )
+
+          if ( (dailyWorkLoad > 2.9) and (dailyWorkLoad < 3.9) ) then
+
+              callCheck = "2.9-3.9"
+
+             -- Everytime this function repeats, now is always 1 second later
+             now = os.time()
+              
+             -- Display text showing the countdown to the dailyEndTime
+             displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
+
+              if ( now > dailyStartTime + dailyEndTime ) then
+
+                  print("*** BETWEEN 2.9 AND 3.9!!!")
+
+                 -- Remove this event listener so that the function does not repeat 
+                 Runtime:removeEventListener( "enterFrame", checkDailyTime4 )
+
+                 timeSpanDays = timeSpanDays - 1
+
+                 timerSetUp( ) 
+                 increaseDailyWorkload( ) 
+                 nextBookEssayTaskNumber( )
+
+              end
+          end
+      end
+
+       -- Call the function checkDailyTime4 every second
+      Runtime:addEventListener( "enterFrame", checkDailyTime4 )
+
+      -------------------------------------------------------------------------------------------------
+
+      -- Create countdown function for one day
+      local function checkDailyTimeWithoutNewTask4( event )
+
+          -- This prevents the daily task from progressing on the same day 
+          if ( callCheck == "2.9-3.9" ) then
+
+              now = os.time()
+
+              -- Number of seconds in one day
+              dailyEndTime = 5
       
-    end -- Closes function  
+             -- Display text showing the countdown to the dailyEndTime
+             displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
 
-     -- Call the function checkDailyTime2 every second
-     Runtime:addEventListener( "enterFrame", checkDailyTime2 )
+              if ( now > (dailyStartTime + dailyEndTime) ) then
 
-         -----------------------------------------------------------------------------------------
+                 -- Remove this event listener so that the function does not repeat itself
+                 Runtime:removeEventListener( "enterFrame", checkDailyTimeWithoutNewTask4 )
 
-    --         -- If the workload is between 1.9 and 2.9    
-    --         elseif ( (dailyWorkLoad > 1.9) and (dailyWorkLoad < 2.9) ) then
+                -- Change the text to notify when the timer is done
+                 displayDailyTime.text = ( "!!!" )  
+                 print("*** Daily time =", displayDailyTime.text)
 
-    --             print("*** Workload between 1.9 and 2.9")
+                 timerSetUp( ) 
+                 increaseDailyWorkload( ) 
 
-    -- -----------------------------------------------------------------------------------------
+                 -- Check if this function needs to be called again
+                 if ( (dailyWorkLoad > 2.9) and (dailyWorkLoad < 3.9) ) then
 
-    --         -- If the workload is between 2.9 and 3.9    
-    --         elseif ( (dailyWorkLoad > 2.9) and (dailyWorkLoad < 3.9) ) then
+                      Runtime:addEventListener( "enterFrame", checkDailyTimeWithoutNewTask4 )
+                 end
 
-    --             print("*** Workload between 2.9 and 3.9")
+              end
+          end
+      end
 
-    -- -----------------------------------------------------------------------------------------
+      -- Call the checkDailyTime every second
+      Runtime:addEventListener( "enterFrame", checkDailyTimeWithoutNewTask4 )
 
-    --         -- If the workload is between 3.9 and 4.9    
-    --         elseif ( (dailyWorkLoad > 3.9) and (dailyWorkLoad < 4.9) ) then
+  -----------------------------------------------------------------------------------------
 
-    --             print("*** Workload between 3.9 and 4.9")
+      local function checkDailyTime5( event )
 
-    --         end
-    --     end
+         if ( (dailyWorkLoad > 3.9) and (dailyWorkLoad < 4.9) ) then
+
+              callCheck = "3.9-4.9"
+
+             -- Everytime this function repeats, now is always 1 second later
+             now = os.time()
+              
+             -- Display text showing the countdown to the dailyEndTime
+             displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
+
+              if ( now > dailyStartTime + dailyEndTime ) then
+
+                  print("*** BETWEEN 3.9 AND 4.9!!!")
+
+                 -- Remove this event listener so that the function does not repeat 
+                 Runtime:removeEventListener( "enterFrame", checkDailyTime5 )
+
+                  timeSpanDays = timeSpanDays - 1
+                  print ("*** TIME SPAN =", timeSpanDays)
+
+                  timerSetUp( ) 
+                 increaseDailyWorkload( ) 
+                 nextBookEssayTaskNumber( )
+
+              end
+          end
+      end 
+
+       -- Call the function checkDailyTime5 every second
+      Runtime:addEventListener( "enterFrame", checkDailyTime5 )
+
+      -------------------------------------------------------------------------------------------------
+
+      -- Create countdown function for one day
+      local function checkDailyTimeWithoutNewTask5( event )
+
+          -- This prevents the daily task from progressing on the same day 
+          if ( callCheck == "3.9-4.9" ) then
+              
+             now = os.time()
+             -- Number of seconds in one day
+             dailyEndTime = 5
+          
+             -- Display text showing the countdown to the dailyEndTime
+             displayDailyTime.text = dailyEndTime - ( now - dailyStartTime )
+
+              if ( now > (dailyStartTime + dailyEndTime) ) then
+
+                 -- Remove this event listener so that the function does not repeat itself
+                 Runtime:removeEventListener( "enterFrame", checkDailyTimeWithoutNewTask5 )
+
+                -- Change the text to notify when the timer is done
+                 displayDailyTime.text = ( "!!!" )  
+                 print("*** Daily time =", displayDailyTime.text)
+
+                 timerSetUp( ) 
+                 increaseDailyWorkload( ) 
+
+                 -- Check if this function needs to be called again
+                 if ( (dailyWorkLoad > 3.9) and (dailyWorkLoad < 4.9) ) then
+
+                      Runtime:addEventListener( "enterFrame", checkDailyTimeWithoutNewTask5 )
+                 end
+              end
+          end
+      end
+
+          -- Call the checkDailyTime every second
+          Runtime:addEventListener( "enterFrame", checkDailyTimeWithoutNewTask5 )
+    end
 end 
 
 -----------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 
 -- Create button on the today text that takes the user to the task_details screen
-local function todayButtonClicked( ) 
+local function moreButtonClicked( ) 
 
     composer.gotoScene( "task_details", {effect = "flipFadeOutIn", time = 500})
 end 
+
 
 -----------------------------------------------------------------------------------------
 -- Global scene function - create
@@ -730,8 +860,13 @@ function scene:create( event )
     todayTaskText = display.newText (todayTask, display.contentWidth/1.58, -75, "Verdana", 54)
     todayTaskText:setTextColor(60/255, 50/255, 100/255)
 
-    displayDailyTime = display.newText( dailyEndTime, display.contentWidth/1.17, 170, "Helvetica", 60 )
+    -- The countdown text that represents one day in seconds
+    displayDailyTime = display.newText( dailyEndTime, display.contentWidth/1.10, 1140, "Helvetica", 60 )
     displayDailyTime:setTextColor(60/255, 50/255, 100/255)
+
+    -- Additional tasks in one day
+    additionalTasksText = display.newText( additionalTasks, display.contentWidth/1.6, -25, "Arial", 53 )
+    additionalTasksText:setTextColor(60/255, 50/255, 100/255)
 
     sceneGroup:insert( addText )
     sceneGroup:insert( helpText )
@@ -740,6 +875,7 @@ function scene:create( event )
     sceneGroup:insert( classOptionTextDisplay )
     sceneGroup:insert( todayTaskText )
     sceneGroup:insert( displayDailyTime )
+    sceneGroup:insert( additionalTasksText )
 
 ------------------------------------------------------------------------------------------
 
@@ -825,14 +961,14 @@ function scene:create( event )
     editButton = widget.newButton( 
         {   
 
-            width = 100,
+            width = 110,
             height = 100,
 
             id = "editButton",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/1.18,
-            y = 40,
+            x = display.contentWidth/1.175,
+            y = 160,
 
             -- Insert the images here
             defaultFile = "Images/Edit.png",
@@ -1057,30 +1193,30 @@ function scene:create( event )
     okayButton.isVisible = false
     okayButton:toFront()
 
-    -----------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
 
-    -- Create a button that takes the user to the task_details page
-    todayButton = widget.newButton( 
+    -- Creating a more button
+    moreButton = widget.newButton( 
         {   
 
-            width = 179,
-            height = 65,
+            width = 110,
+            height = 100,
 
-            id = "todayButton",
+            id = "moreButton",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/4.2,
-            y = -73,
+            x = display.contentWidth/1.175,
+            y = display.contentHeight/20,
 
             -- Insert the images here
-            defaultFile = "Images/blue2.png",
-            overFile = "Images/bluePressed.png",
+            defaultFile = "Images/more.png",
+            overFile = "Images/morePressed.png",
 
-            -- When the button is released, call this function
-            onRelease = todayButtonClicked          
+            -- When the button is released, call the more button function
+            onRelease = moreButtonClicked       
         } )
 
-        todayButton.alpha = 0.2
+    moreButton.alpha = 0.6
 
     -----------------------------------------------------------------------------------------
 
@@ -1097,7 +1233,7 @@ function scene:create( event )
     sceneGroup:insert( checkButton )
     sceneGroup:insert( showTasksButton )
     sceneGroup:insert( okayButton )
-    sceneGroup:insert( todayButton )
+    sceneGroup:insert( moreButton )
 
     -- Bring the button text above everything else
     addText:toFront()
@@ -1125,28 +1261,29 @@ function scene:show( event )
     classOptionTextDisplay.text = classOption
     todayTaskText.text = todayTask
 
+    timeSpan = daysBetweenTodayAndDue
+    print("*** Time span =", timeSpan)
+
     -----------------------------------------------------------------------------------------   
 
     -- Called when the scene is still off screen (but is about to come on screen).   
     if ( phase == "will" ) then
-
-        print("*** REPEAT CHECK")
         
         dailyWorkloadCalculation( ) 
-
-        -- If we are working with the book essay
-        if (typeOption == "Book Essay") then    
-
-            bookEssayWorkload( )
-        end
 
     -----------------------------------------------------------------------------------------
 
     -- Called when the scene is now on screen 
     -- Insert code here for animations and effects
 
-    elseif ( phase == "did" ) then       
-            
+    elseif ( phase == "did" ) then 
+
+      -- If we are working with the book essay
+      if (typeOption == "Book Essay") then    
+
+          bookEssayWorkload( )
+      end 
+
     end
 end
 
