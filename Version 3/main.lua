@@ -1,5 +1,5 @@
 
--- Version 2 : Smart Agenda
+-- Version 1 : Smart Agenda
 -- File : main.lua
 -- Created by Laura Aubin
 -- Created on January 08, 2016

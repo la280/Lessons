@@ -16,8 +16,8 @@ local composer = require( "composer" )
 -- Use widget library
 local widget = require( "widget" )
 
--- Use widget library
-local backgroundColours = require( "_Background colours" )
+-- Load background colours code, local to this scene
+local backgroundColours = require( "Background.Background colours" )
 
 -- Name this scene
 sceneName = "main_menu"
@@ -52,7 +52,6 @@ currentStep = "0"
 ---------------------------------------------------------------------------------------------------------
 
 local background
-
 local okayButton
 local checkButton
 local addButton
@@ -61,9 +60,11 @@ local todayButton
 
 local timeSpanDays = timeSpan
 
+
 -----------------------------------------------------------------------------------------
 -- TRANSITION BUTTON FUNCTIONS
 -----------------------------------------------------------------------------------------
+
 
 -- When the add button is clicked, call this function
 local function addButtonClicked( )
@@ -117,60 +118,6 @@ local function okayButtonClicked( )
     okayButton.isVisible = false
 
     showTasksButton.isVisible = true
-end 
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- Create background colour change function - black
-local function blackButtonClicked( ) 
-
-    display.setDefault("background", 30/255, 30/255, 30/255)
-end 
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- Create background colour change function - white
-local function whiteButtonClicked( ) 
-
-    display.setDefault("background", 250/255, 250/255, 250/255)
-end 
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- Create background colour change function - blue
-local function blueButtonClicked( ) 
-
-    display.setDefault("background", 35/255, 115/255, 230/255)
-end 
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- Create background colour change function - green
-local function greenButtonClicked( ) 
-
-    display.setDefault("background", 35/255, 230/255, 90/255)
-end 
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- Create background colour change function - purple
-local function purpleButtonClicked( ) 
-
-    display.setDefault("background", 150/255, 65/255, 230/255)
-end 
-
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
-
--- Create background colour change function - red
-local function redButtonClicked( ) 
-
-    display.setDefault("background", 230/255, 30/255, 35/255)
 end 
 
 -----------------------------------------------------------------------------------------
@@ -814,6 +761,8 @@ function scene:create( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
+
+
 
 
 -----------------------------------------------------------------------------------------
