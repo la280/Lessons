@@ -62,3 +62,11 @@ function moreButtonClicked( )
 
     composer.gotoScene( "task_details", {effect = "flipFadeOutIn", time = 500})
 end 
+
+-----------------------------------------------------------------------------------------
+
+-- Create button on the today text that takes the user to the settings screen
+function settingsButtonClicked( ) 
+
+    composer.gotoScene( "settings", {effect = "flipFadeOutIn", time = 500})
+end 

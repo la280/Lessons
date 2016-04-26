@@ -24,7 +24,7 @@ function nextBookEssayTaskNumber( )
     if (bookEssayTaskNumber == "5") then
 
         -- The next task
-        bookEssayTaskNumber = "4"
+        bookEssayTaskNumber = "4" 
         todayTask = "Review essay's"
 
         todayTaskText.text = todayTask

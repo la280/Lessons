@@ -104,6 +104,9 @@ function scene:create( event )
     helpText = display.newText ( "HELP", display.contentWidth/2, 700, "Arial", 60)
     helpText:setTextColor(60/255, 50/255, 100/255)
 
+    settingsText = display.newText ( "SETTINGS", display.contentWidth/2, 980, "Arial", 55)
+    settingsText:setTextColor(60/255, 50/255, 100/255)
+
     -- Input items from the add screen, displayed on the main screen
     customNameTextDisplay = display.newText (customName, display.contentWidth/2.5, 35, "Arial", 53)
     customNameTextDisplay:setTextColor(60/255, 50/255, 100/255)
@@ -128,6 +131,7 @@ function scene:create( event )
 
     sceneGroup:insert( addText )
     sceneGroup:insert( helpText )
+    sceneGroup:insert( settingsText )
     sceneGroup:insert( customNameTextDisplay )
     sceneGroup:insert( typeOptionTextDisplay )
     sceneGroup:insert( classOptionTextDisplay )
@@ -212,6 +216,30 @@ function scene:create( event )
             -- When the button is released, call the help screen transition function
             onRelease = helpButtonClicked          
         } )
+
+     -----------------------------------------------------------------------------------------
+
+     -- Creating a settings button
+    settingsButton = widget.newButton( 
+        {   
+
+            width = 672,
+            height = 173,
+
+            id = "settingsButton",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentCenterX,
+            y = display.contentHeight/1.043,
+
+            -- Insert the images here
+            defaultFile = "Images/pink.png",
+            overFile = "Images/pinkPressed.png",
+
+            -- When the button is released, call the settings screen transition function
+            onRelease = settingsButtonClicked          
+        } )
+
 
     -----------------------------------------------------------------------------------------
 
@@ -481,6 +509,7 @@ function scene:create( event )
     -- Associating button widgets with this scene
     sceneGroup:insert( addButton )
     sceneGroup:insert( helpButton )
+    sceneGroup:insert( settingsButton )
     sceneGroup:insert( editButton )
     sceneGroup:insert( blackDotButton )
     sceneGroup:insert( whiteDotButton )
@@ -497,6 +526,7 @@ function scene:create( event )
     addText:toFront()
     helpText:toFront()
     okayButton:toFront()
+    settingsText:toFront()
 end 
 
 
