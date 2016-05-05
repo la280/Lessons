@@ -10,7 +10,6 @@ sceneName = "due_date_functions"
 -- FUNCTIONS
 -----------------------------------------------------------------------------------------
 
-
 -- From today until due date
 function daysCalculator( )
 
@@ -23,6 +22,8 @@ function daysCalculator( )
         daysBetweenTodayAndDue = (dayNumber - (os.date("%d"))) + daysFromThisMonth - daysFromOurMonth
 
         A = daysBetweenTodayAndDue
+
+        print("**** ", A)
     end
 
     -- Since in the year 2016, we are finished with these months
@@ -35,6 +36,10 @@ function daysCalculator( )
         monthName = "Invalid year"
 
     elseif (monthName == "March") then
+
+        monthName = "Invalid year"
+
+    elseif (monthName == "April") then
 
         monthName = "Invalid year"
     end

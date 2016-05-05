@@ -61,7 +61,7 @@ end
 function dailyWorkloadCalculation( ) 
 
     -- If we are working with the book essay
-    if (bookEssayTaskNumber == "5") then
+    if ( typeOption == "Book Essay" ) then
 
         -- The number of steps divided by how much time you have to complete it
         dailyWorkLoad = bookEssayTaskNumber/timeSpan

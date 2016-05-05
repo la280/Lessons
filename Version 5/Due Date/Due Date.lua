@@ -66,7 +66,7 @@ daysFromOctober = 404
 daysFromNovember = 434
 daysFromDecember = 465
 
-daysFromOurMonth = daysFromApril
+daysFromOurMonth = daysFromMay
 
 
 ------------------------------------------------------------------------------------------
@@ -107,6 +107,7 @@ dateAndTimeFunctions_ = require( "Due Date.Date and Time Functions" )
 local function backButtonClicked( )
 
     print("*** Back button clicked")
+
     composer.gotoScene( "add_screen", {effect = "zoomInOutFade", time = 500})
 end  
  
