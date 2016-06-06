@@ -205,37 +205,37 @@ function scene:create( event )
 
     ---------------------------------------------------------------------------------------------
 
-    dateMainDay = display.newText ( weekDayName, display.contentWidth/2, -10, "Arial", 48) 
-    dateMainDay:setTextColor(250/255, 250/255, 250/255) 
+    dateMainDayMainMenu = display.newText ( weekDayName, display.contentWidth/2, -10, "Arial", 48) 
+    dateMainDayMainMenu:setTextColor(250/255, 250/255, 250/255)  
 
-    dateMainDay1 = display.newText ( weekDayName1, display.contentWidth/9.35, -10, "Arial", 43)
-    dateMainDay1:setTextColor(110/255, 110/255, 120/255)
+    dateMainDay1MainMenu = display.newText ( weekDayName1, display.contentWidth/9.35, -10, "Arial", 43)
+    dateMainDay1MainMenu:setTextColor(110/255, 110/255, 120/255)
 
-    dateMainDay2 = display.newText ( weekDayName2, display.contentWidth/3.37, -10, "Arial", 43)
-    dateMainDay2:setTextColor(110/255, 110/255, 120/255)
+    dateMainDay2MainMenu = display.newText ( weekDayName2, display.contentWidth/3.37, -10, "Arial", 43)
+    dateMainDay2MainMenu:setTextColor(110/255, 110/255, 120/255)
 
-    dateMainDay3 = display.newText ( weekDayName3, display.contentWidth/1.425, -10, "Arial", 43)
-    dateMainDay3:setTextColor(110/255, 110/255, 120/255)
+    dateMainDay3MainMenu = display.newText ( weekDayName3, display.contentWidth/1.425, -10, "Arial", 43)
+    dateMainDay3MainMenu:setTextColor(110/255, 110/255, 120/255)
 
-    dateMainDay4 = display.newText ( weekDayName4, display.contentWidth/1.11, -10, "Arial", 43)
-    dateMainDay4:setTextColor(110/255, 110/255, 120/255)
+    dateMainDay4MainMenu = display.newText ( weekDayName4, display.contentWidth/1.11, -10, "Arial", 43)
+    dateMainDay4MainMenu:setTextColor(110/255, 110/255, 120/255)
 
     ---------------------------------------------------------------------------------------------
 
-    dateMainDate = display.newText ( os.date("%d"), display.contentWidth/2, 80, "Times New Roman", 117)
-    dateMainDate:setTextColor(250/255, 250/255, 250/255)
+    dateMainDateMainScreen = display.newText ( dayNumberManipulate, display.contentWidth/2, 80, "Times New Roman", 117)
+    dateMainDateMainScreen:setTextColor(250/255, 250/255, 250/255) 
 
-    dateMainDate1 = display.newText ( "31", display.contentWidth/9.35, 80, "Times New Roman", 110)
-    dateMainDate1:setTextColor(110/255, 110/255, 120/255)
+    dateMainDate1MainScreen = display.newText ( dayNumberManipulate1, display.contentWidth/9.35, 80, "Times New Roman", 110)
+    dateMainDate1MainScreen:setTextColor(110/255, 110/255, 120/255) 
 
-    dateMainDate2 = display.newText ( "01", display.contentWidth/3.37, 80, "Times New Roman", 110)
-    dateMainDate2:setTextColor(110/255, 110/255, 120/255)
+    dateMainDate2MainScreen = display.newText ( dayNumberManipulate2, display.contentWidth/3.37, 80, "Times New Roman", 110)
+    dateMainDate2MainScreen:setTextColor(110/255, 110/255, 120/255)
 
-    dateMainDate3 = display.newText ( "03", display.contentWidth/1.425, 80, "Times New Roman", 110)
-    dateMainDate3:setTextColor(110/255, 110/255, 120/255)
+    dateMainDate3MainScreen = display.newText ( dayNumberManipulate3, display.contentWidth/1.425, 80, "Times New Roman", 110)
+    dateMainDate3MainScreen:setTextColor(110/255, 110/255, 120/255)
 
-    dateMainDate4 = display.newText ( "04", display.contentWidth/1.11, 80, "Times New Roman", 110)
-    dateMainDate4:setTextColor(110/255, 110/255, 120/255)
+    dateMainDate4MainScreen = display.newText ( dayNumberManipulate4, display.contentWidth/1.11, 80, "Times New Roman", 110)
+    dateMainDate4MainScreen:setTextColor(110/255, 110/255, 120/255)
 
     ---------------------------------------------------------------------------------------------
 
@@ -292,13 +292,6 @@ function scene:create( event )
 
     ----------------------------------------------------------------------------------
 
-    todayTaskBlock = display.newImageRect("Images/Menu Blocks/blueBar2.png", display.contentWidth/1.3, display.contentHeight/10)
-    todayTaskBlock.x = display.contentWidth/2
-    todayTaskBlock.y = 826
-    todayTaskBlock.alpha = 0.4
-
-    ----------------------------------------------------------------------------------
-
     -- Input items from the add screen, displayed on the main screen
     customNameTextDisplay = display.newText (customName, display.contentWidth/2, 427, "Verdana", 45)
     customNameTextDisplay:setTextColor(250/255, 250/255, 255/255)
@@ -315,8 +308,9 @@ function scene:create( event )
     todayTaskText:setTextColor(250/255, 250/255, 255/255)
 
     -- The countdown text that represents one day in seconds
-    displayDailyTime = display.newText( dailyEndTime, display.contentWidth/1.10, 1140, "Helvetica", 60 )
+    displayDailyTime = display.newText( dailyEndTime, display.contentWidth/1.05, 980, "Helvetica", 60 )
     displayDailyTime:setTextColor(60/255, 50/255, 100/255)
+    displayDailyTime.alpha = 0
 
     -- Additional tasks in one day
     additionalTasksText = display.newText( additionalTasks, display.contentWidth/1.6, -25, "Arial", 53 )
@@ -324,7 +318,35 @@ function scene:create( event )
 
     countText = display.newText( countNumber, display.contentWidth/1.4, 1080, "Arial", 50 )
     countText:setTextColor(130/255, 255/255, 255/255)
-    
+
+    ----------------------------------------------------------------------------------
+
+    toDo1 = display.newText( "", display.contentWidth/2, 420, "Verdana", 35 )
+    toDo1:setTextColor(50/255, 35/255, 55/255)
+    toDo1.isVisible = false
+
+    toDo2 = display.newText( "", display.contentWidth/2, 470, "Verdana", 35 )
+    toDo2:setTextColor(50/255, 35/255, 55/255)
+    toDo2.isVisible = false
+
+    toDo3 = display.newText( "", display.contentWidth/2, 520, "Verdana", 35 )
+    toDo3:setTextColor(50/255, 35/255, 55/255)
+    toDo3.isVisible = false
+
+    toDo4 = display.newText( "", display.contentWidth/2, 570, "Verdana", 35 )
+    toDo4:setTextColor(50/255, 35/255, 55/255)
+    toDo4.isVisible = false
+
+    toDo5 = display.newText( "", display.contentWidth/2, 620, "Verdana", 35 )
+    toDo5:setTextColor(50/255, 35/255, 55/255)
+    toDo5.isVisible = false
+
+    toDo6 = display.newText( "", display.contentWidth/2, 670, "Verdana", 35 )
+    toDo6:setTextColor(50/255, 35/255, 55/255)
+    toDo6.isVisible = false
+
+    ----------------------------------------------------------------------------------
+
     sceneGroup:insert( blackBottom )
     sceneGroup:insert( blackBottom2 )
     sceneGroup:insert( blackTop )
@@ -339,16 +361,16 @@ function scene:create( event )
     sceneGroup:insert( dateRight )
     sceneGroup:insert( dateFarLeft )
     sceneGroup:insert( dateFarRight )
-    sceneGroup:insert( dateMainDay )
-    sceneGroup:insert( dateMainDay1 )
-    sceneGroup:insert( dateMainDay2 )
-    sceneGroup:insert( dateMainDay3 )
-    sceneGroup:insert( dateMainDay4 )
-    sceneGroup:insert( dateMainDate )
-    sceneGroup:insert( dateMainDate1 )
-    sceneGroup:insert( dateMainDate2 )
-    sceneGroup:insert( dateMainDate3 )
-    sceneGroup:insert( dateMainDate4 )
+    sceneGroup:insert( dateMainDayMainMenu )
+    sceneGroup:insert( dateMainDay1MainMenu )
+    sceneGroup:insert( dateMainDay2MainMenu )
+    sceneGroup:insert( dateMainDay3MainMenu )
+    sceneGroup:insert( dateMainDay4MainMenu)
+    sceneGroup:insert( dateMainDateMainScreen )
+    sceneGroup:insert( dateMainDate1MainScreen )
+    sceneGroup:insert( dateMainDate2MainScreen )
+    sceneGroup:insert( dateMainDate3MainScreen )
+    sceneGroup:insert( dateMainDate4MainScreen )
     sceneGroup:insert( dateMainMonth )
     -------------------
     sceneGroup:insert( customNameBlock )
@@ -360,7 +382,6 @@ function scene:create( event )
     sceneGroup:insert( classBlock )
     sceneGroup:insert( classBlockIcon )
     sceneGroup:insert( classBlockIconDash )
-    sceneGroup:insert( todayTaskBlock )
     -------------------
     sceneGroup:insert( customNameTextDisplay )
     sceneGroup:insert( typeOptionTextDisplay )
@@ -375,6 +396,13 @@ function scene:create( event )
     sceneGroup:insert( settingsText )
     sceneGroup:insert( countTextName )
     sceneGroup:insert( calendarTextName )
+    -------------------
+    sceneGroup:insert( toDo1 )
+    sceneGroup:insert( toDo2 )
+    sceneGroup:insert( toDo3 )
+    sceneGroup:insert( toDo4 )
+    sceneGroup:insert( toDo5 )
+    sceneGroup:insert( toDo6 )
 
     ------------------------------------------------------------------------------------------
 
@@ -512,24 +540,24 @@ function scene:create( event )
     checkButton = widget.newButton( 
         {   
 
-            width = 50,
-            height = 50,
+            width = 85,
+            height = 85,
 
             id = "checkButton",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/10.5,
-            y = 100,
+            x = display.contentWidth/5.3,
+            y = 825,
 
             -- Insert the images here
-            defaultFile = "Images/Check.png",
-            overFile = "Images/CheckPressed.png",
+            defaultFile = "Images/checkBox.png",
+            overFile = "Images/checkBox1.png",
 
             -- When the button is released, call this function
             onRelease = checkButtonClicked          
         } )
 
-    checkButton.alpha = 0
+    checkButton.alpha = 0.9
 
     -----------------------------------------------------------------------------------------
 
@@ -685,6 +713,53 @@ function scene:create( event )
 
     menuButton.alpha = 0.8
 
+    --------------------------------------------------------------------------------
+
+    tasksDisplayButton = widget.newButton( 
+        {   
+
+            width = display.contentWidth/1.3,
+            height = display.contentHeight/10,
+
+            id = "tasksDisplayButton",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/2,
+            y = 826,
+
+            -- Insert the images here
+            defaultFile = "Images/Menu Blocks/blueBar2.png",
+            overFile = "Images/Menu Blocks/blueBar.png",
+
+            -- When the button is released, call the more button function
+            onRelease = tasksDisplayButtonClicked       
+        } )
+
+    tasksDisplayButton.alpha = 0.4
+
+    --------------------------------------------------------------------------------
+
+    tasksDisplayHideButton = widget.newButton( 
+        {   
+
+            width = display.contentWidth/1.1,
+            height = display.contentHeight/2.63,
+
+            id = "tasksDisplayHideButton",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/2,
+            y = 546,
+
+            -- Insert the images here
+            defaultFile = "Images/Menu Blocks/basic.png",
+            overFile = "Images/Menu Blocks/blueBar.png",
+
+            -- When the button is released, call the more button function
+            onRelease = tasksDisplayHideButtonClicked       
+        } )
+
+    tasksDisplayHideButton.isVisible = false
 
     -----------------------------------------------------------------------------------------
 
@@ -696,16 +771,24 @@ function scene:create( event )
     sceneGroup:insert( calendarButton )
     sceneGroup:insert( menuButton )
     sceneGroup:insert( editButton )
-    sceneGroup:insert( checkButton )
     sceneGroup:insert( showTasksButton )
     sceneGroup:insert( okayButton )
     sceneGroup:insert( moreButton )
+    sceneGroup:insert( tasksDisplayButton )
+    sceneGroup:insert( tasksDisplayHideButton )
+    sceneGroup:insert( checkButton )
+
+    tasksDisplayButton:toBack()
+    blueBox:toBack()
+    background:toBack()
+    todayTaskText:toFront()
 
     -- Bring the button text above everything else
     addText:toFront()
     helpText:toFront()
     okayButton:toFront()
     settingsText:toFront()
+    checkButton:toFront()
 end 
 
 
@@ -752,6 +835,36 @@ function scene:show( event )
 
         print("*** Time span =", time) 
         print("*** Time span 2 =", time2) 
+
+        if ( t[1] ~= nil ) then 
+
+            toDo1.text = "Today: " .. t[1]
+        end
+
+        if ( t[2] ~= nil ) then 
+
+            toDo2.text = "Next: " .. t[2]
+        end
+
+        if ( t[3] ~= nil ) then 
+
+            toDo3.text = t[3]
+        end
+
+        if ( t[4] ~= nil ) then 
+
+            toDo4.text = t[4]
+        end
+
+        if ( t[5] ~= nil ) then 
+
+            toDo5.text = t[5]
+        end
+         
+        if ( t[6] ~= nil ) then 
+
+            toDo6.text = t[6]
+        end
     end
 end
 

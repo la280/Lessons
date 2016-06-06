@@ -47,10 +47,12 @@ dateAndTimeFunctions_ = require( "Due Date.Date and Time Functions" )
 
 -----------------------------------------------------------------------------------------
 
-function assigningValueToTime()
+function assigningValueToTime() 
 
     time = A
     Runtime:removeEventListener( "enterFrame", assigningValueToTime )
+
+    print("*** TIME =", time)
 
     -- The workload calculation requires the task type component
     if ( specifiedTask == "Book Essay") then

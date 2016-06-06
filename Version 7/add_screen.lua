@@ -67,6 +67,9 @@ local function okayButtonClicked( )
         showTasksButton.isVisible = true
     end
 
+    Runtime:addEventListener( "enterFrame", bookEssayInitiation )
+    Runtime:addEventListener( "enterFrame", option2Initiation )
+
     composer.gotoScene( "main_menu", {effect = "zoomInOutFade", time = 500})
 end 
 
@@ -293,6 +296,8 @@ local function typeMenuButtonClicked2 ()
 
     typeMenuOption1Button.alpha = 0
     typeOption1.alpha = 0
+
+    typeOption1show.isVisible = true
 end 
 
 -----------------------------------------------------------------------------------
@@ -307,6 +312,8 @@ local function classMenuButtonClicked2 ()
 
     classMenuOption1Button.alpha = 0
     classOption1Text.alpha = 0
+
+    classOption1Textshow.isVisible = true
 end 
 
 -----------------------------------------------------------------------------------
@@ -377,6 +384,35 @@ local function calendarShowButtonClicked ()
     calendar.alpha = 1
     x.alpha = 0.4
     calendarHideButton.alpha = 0.9
+    calendar2Button.isVisible = true
+    calendar3Button.isVisible = true
+    calendar4Button.isVisible = true
+    calendar5Button.isVisible = true
+    calendar6Button.isVisible = true
+    calendar7Button.isVisible = true
+    calendar8Button.isVisible = true
+    calendar9Button.isVisible = true
+    calendar10Button.isVisible = true
+    calendar11Button.isVisible = true
+    calendar12Button.isVisible = true
+    calendar13Button.isVisible = true
+    calendar14Button.isVisible = true
+    calendar15Button.isVisible = true
+    calendar16Button.isVisible = true
+    calendar17Button.isVisible = true
+    calendar18Button.isVisible = true
+    calendar19Button.isVisible = true
+    calendar20Button.isVisible = true
+    calendar21Button.isVisible = true
+    calendar22Button.isVisible = true
+    calendar23Button.isVisible = true
+    calendar24Button.isVisible = true
+    calendar25Button.isVisible = true
+    calendar26Button.isVisible = true
+    calendar27Button.isVisible = true
+    calendar28Button.isVisible = true
+    calendar29Button.isVisible = true
+    calendar30Button.isVisible = true
 
     typeText.alpha = 0
     typeBlock.alpha = 0
@@ -391,6 +427,8 @@ local function calendarShowButtonClicked ()
     okayButtonText.alpha = 0
     cancelButton.alpha = 0
     cancelButtonText.alpha = 0
+    typeOption1show.alpha = 0
+    classOption1Textshow.alpha = 0
 end
 
 -----------------------------------------------------------------------------------
@@ -400,6 +438,35 @@ local function calendarHideButtonClicked ()
     calendar.alpha = 0
     x.alpha = 0
     calendarHideButton.alpha = 0
+    calendar2Button.isVisible = false
+    calendar3Button.isVisible = false
+    calendar4Button.isVisible = false
+    calendar5Button.isVisible = false
+    calendar6Button.isVisible = false
+    calendar7Button.isVisible = false
+    calendar8Button.isVisible = false
+    calendar9Button.isVisible = false
+    calendar10Button.isVisible = false
+    calendar11Button.isVisible = false
+    calendar12Button.isVisible = false
+    calendar13Button.isVisible = false
+    calendar14Button.isVisible = false
+    calendar15Button.isVisible = false
+    calendar16Button.isVisible = false
+    calendar17Button.isVisible = false
+    calendar18Button.isVisible = false
+    calendar19Button.isVisible = false
+    calendar20Button.isVisible = false
+    calendar21Button.isVisible = false
+    calendar22Button.isVisible = false
+    calendar23Button.isVisible = false
+    calendar24Button.isVisible = false
+    calendar25Button.isVisible = false
+    calendar26Button.isVisible = false
+    calendar27Button.isVisible = false
+    calendar28Button.isVisible = false
+    calendar29Button.isVisible = false
+    calendar30Button.isVisible = false
 
     typeText.alpha = 0.6
     typeBlock.alpha = 0.4
@@ -414,13 +481,441 @@ local function calendarHideButtonClicked ()
     okayButtonText.alpha = 0.8
     cancelButton.alpha = 0.7
     cancelButtonText.alpha = 0.8
+    typeOption1show.alpha = 0.9
+    classOption1Textshow.alpha = 0.9
 end
 
 -----------------------------------------------------------------------------------
 
 local function calendar2ButtonClicked ()
 
+    calendarHideButtonClicked ()
+
+    dayNumber = 2
 end
+
+-----------------------------------------------------------------------------------
+
+local function calendar3ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 3
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar4ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 4
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar5ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 5
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar6ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 6
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar7ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 7
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar8ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 8
+
+    print("=====================")
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar9ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 9
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar10ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 10
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar11ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 11
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar12ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 12
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar13ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 13
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar14ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 14
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar15ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 15
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar16ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 16
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar17ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 17
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar18ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 18
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar19ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 19
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar20ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 20
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar21ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 21
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar22ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 22
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar23ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 23
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar24ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 24
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar25ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 25
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar26ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 26
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar27ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 27
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar28ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 28
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar29ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 29
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
+-----------------------------------------------------------------------------------
+
+local function calendar30ButtonClicked ()
+
+    calendarHideButtonClicked ()
+
+    dayNumber = 30
+
+    -- ***NOTE: Run function monthNumberValues() in add_screen
+    daysFromThisMonth = daysFromJune
+
+    Runtime:addEventListener( "enterFrame", daysCalculator )
+    Runtime:addEventListener( "enterFrame", assigningValueToTime )
+end
+
 
 -----------------------------------------------------------------------------------------
 -- Global scene function - create
@@ -520,8 +1015,8 @@ function scene:create( event )
 
     ---------------------------------------------------------------------------------------------
 
-    dateMainDate = display.newText ( os.date("%d"), display.contentWidth/2, 80, "Times New Roman", 117)
-    dateMainDate:setTextColor(250/255, 250/255, 250/255)
+    dateMainDate = display.newText ( dayNumberManipulate, display.contentWidth/2, 80, "Times New Roman", 117)
+    dateMainDate:setTextColor(250/255, 250/255, 250/255) 
 
     dateMainDate1 = display.newText ( "31", display.contentWidth/9.35, 80, "Times New Roman", 110)
     dateMainDate1:setTextColor(110/255, 110/255, 120/255)
@@ -606,11 +1101,17 @@ function scene:create( event )
     daysBetweenDisplayText = display.newText ("", display.contentWidth/3.24, display.contentHeight/1.01, "Arial", 37)
     daysBetweenDisplayText:setTextColor(50/255, 40/255, 90/255)
 
-    typeOption1 = display.newText (table1Name, display.contentWidth/1.4, display.contentHeight/1.7, "Arial", 37)
+    typeOption1 = display.newText (table1Name, display.contentWidth/1.4, display.contentHeight/1.68, "Arial", 37)
     typeOption1:setTextColor(50/255, 40/255, 90/255)
 
-    classOption1Text = display.newText (classOption1, display.contentWidth/1.4, display.contentHeight/1.3, "Arial", 37)
+    typeOption1show = display.newText (table1Name, display.contentWidth/1.4, display.contentHeight/1.87, "Arial", 37)
+    typeOption1show:setTextColor(50/255, 40/255, 90/255)
+
+    classOption1Text = display.newText (classOption1, display.contentWidth/1.4, display.contentHeight/1.35, "Arial", 37)
     classOption1Text:setTextColor(50/255, 40/255, 90/255)
+
+    classOption1Textshow = display.newText (classOption1, display.contentWidth/1.4, display.contentHeight/1.46, "Arial", 37)
+    classOption1Textshow:setTextColor(50/255, 40/255, 90/255)
 
     sceneGroup:insert( customNameBlock )
     sceneGroup:insert( typeBlock )
@@ -740,18 +1241,18 @@ function scene:create( event )
             id = "typeMenuButton",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/1.37,
-            y = 520,
+            x = display.contentWidth/1.39,
+            y = 545,
 
             -- Insert the images here
-            defaultFile = "Images/Tools/DropDownMain.png",
-            overFile = "Images/Tools/DropDownLight.png",
+            defaultFile = "Images/Buttons/buttonGreen.jpeg",
+            overFile = "Images/Menu Blocks/BasicPressed.png",
 
             -- When the button is released, call the add screen transition function
             onRelease = typeMenuFunctionsClicked          
         } )
 
-    typeMenuButton.alpha = 0.8
+    typeMenuButton.alpha = 0.23
 
     -----------------------------------------------------------------------------------------   
 
@@ -764,12 +1265,12 @@ function scene:create( event )
             id = "typeMenuOption1Button",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/1.37,
-            y = 600,
+            x = display.contentWidth/1.39,
+            y = 612,
 
             -- Insert the images here
-            defaultFile = "Images/Tools/DropDownMain.png",
-            overFile = "Images/Tools/DropDownLight.png",
+            defaultFile = "Images/Menu Blocks/Basic.png",
+            overFile = "Images/Menu Blocks/Basic.png",
 
             -- When the button is released, call the add screen transition function
             onRelease = typeMenuFunctions2Clicked          
@@ -789,18 +1290,18 @@ function scene:create( event )
             id = "classMenuButton",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/1.37,
+            x = display.contentWidth/1.39,
             y = 700,
 
             -- Insert the images here
-            defaultFile = "Images/Tools/DropDownMain.png",
-            overFile = "Images/Tools/DropDownLight.png",
+            defaultFile = "Images/Menu Blocks/Basic.png",
+            overFile = "Images/Menu Blocks/Basic.png",
 
             -- When the button is released, call the add screen transition function
             onRelease = classMenuFunctionsClicked          
         } )
 
-    classMenuButton.alpha = 0.8
+    classMenuButton.alpha = 0.5
 
     -----------------------------------------------------------------------------------------   
 
@@ -813,12 +1314,12 @@ function scene:create( event )
             id = "classMenuOption1Button",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/1.37,
-            y = 800,
+            x = display.contentWidth/1.39,
+            y = 763,
 
             -- Insert the images here
-            defaultFile = "Images/Tools/DropDownMain.png",
-            overFile = "Images/Tools/DropDownLight.png",
+            defaultFile = "Images/Menu Blocks/Basic.png",
+            overFile = "Images/Menu Blocks/Basic.png",
 
             -- When the button is released, call the add screen transition function
             onRelease = classMenuFunctions2Clicked          
@@ -832,21 +1333,23 @@ function scene:create( event )
         {   
 
             width = 270,
-            height = 68,
+            height = 110,
 
             id = "calendarShowButton",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/1.37,
+            x = display.contentWidth/1.39,
             y = 910,
 
             -- Insert the images here
-            defaultFile = "Images/Tools/DropDownMain.png",
-            overFile = "Images/Tools/DropDownLight.png",
+            defaultFile = "Images/Menu Blocks/Basic.png",
+            overFile = "Images/Menu Blocks/Basic.png",
 
             -- When the button is released, call the add screen transition function
             onRelease = calendarShowButtonClicked          
         } )
+
+    calendarShowButton.alpha = 0.4
 
     -----------------------------------------------------------------------------------------   
 
@@ -895,6 +1398,707 @@ function scene:create( event )
         } )
 
     calendar2Button.alpha = 0.5
+    calendar2Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar3Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar3Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.28,
+            y = 727,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar3ButtonClicked          
+        } )
+
+    calendar3Button.alpha = 0.5
+    calendar3Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar4Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar4Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.08,
+            y = 727,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar4ButtonClicked          
+        } )
+
+    calendar4Button.alpha = 0.5
+    calendar4Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar5Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar5Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/11.3,
+            y = 800,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar5ButtonClicked          
+        } )
+
+    calendar5Button.alpha = 0.5
+    calendar5Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar6Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar6Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/4.5,
+            y = 800,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar6ButtonClicked          
+        } )
+
+    calendar6Button.alpha = 0.5
+    calendar6Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar7Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar7Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/2.78,
+            y = 800,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar7ButtonClicked          
+        } )
+
+    calendar7Button.alpha = 0.5
+    calendar7Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar8Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar8Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/2,
+            y = 800,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar8ButtonClicked           
+        } )
+
+    calendar8Button.alpha = 0.5
+    calendar8Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar9Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar9Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.559,
+            y = 800,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar9ButtonClicked          
+        } )
+
+    calendar9Button.alpha = 0.5
+    calendar9Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar10Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar10Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.28,
+            y = 800,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar10ButtonClicked          
+        } )
+
+    calendar10Button.alpha = 0.5
+    calendar10Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar11Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar11Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.08,
+            y = 800,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar11ButtonClicked          
+        } )
+
+    calendar11Button.alpha = 0.5
+    calendar11Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar12Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar12Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/11.3,
+            y = 883,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar12ButtonClicked          
+        } )
+
+    calendar12Button.alpha = 0.5
+    calendar12Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar13Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar13Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/4.5,
+            y = 883,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar13ButtonClicked          
+        } )
+
+    calendar13Button.alpha = 0.5
+    calendar13Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar14Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar14Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/2.78,
+            y = 883,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar14ButtonClicked          
+        } )
+
+    calendar14Button.alpha = 0.5
+    calendar14Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar15Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar15Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/2,
+            y = 883,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar15ButtonClicked          
+        } )
+
+    calendar15Button.alpha = 0.5
+    calendar15Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar16Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar16Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.559,
+            y = 883,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar16ButtonClicked          
+        } )
+
+    calendar16Button.alpha = 0.5
+    calendar16Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar17Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar17Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.28,
+            y = 883,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar17ButtonClicked          
+        } )
+
+    calendar17Button.alpha = 0.5
+    calendar17Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar18Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar18Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.08,
+            y = 883,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar18ButtonClicked          
+        } )
+
+    calendar18Button.alpha = 0.5
+    calendar18Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar19Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar19Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/11.3,
+            y = 962,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar19ButtonClicked          
+        } )
+
+    calendar19Button.alpha = 0.5
+    calendar19Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar20Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar20Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/4.5,
+            y = 962,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar20ButtonClicked          
+        } )
+
+    calendar20Button.alpha = 0.5
+    calendar20Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar21Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar21Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/2.78,
+            y = 962,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar21ButtonClicked          
+        } )
+
+    calendar21Button.alpha = 0.5
+    calendar21Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar22Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar22Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/2,
+            y = 962,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar22ButtonClicked          
+        } )
+
+    calendar22Button.alpha = 0.5
+    calendar22Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar23Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar23Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.559,
+            y = 962,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar23ButtonClicked          
+        } )
+
+    calendar23Button.alpha = 0.5
+    calendar23Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar24Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar24Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.28,
+            y = 962,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar24ButtonClicked          
+        } )
+
+    calendar24Button.alpha = 0.5
+    calendar24Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar25Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar25Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.08,
+            y = 962,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar25ButtonClicked          
+        } )
+
+    calendar25Button.alpha = 0.5
+    calendar25Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar26Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar26Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/11.3,
+            y = 1038,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar26ButtonClicked          
+        } )
+
+    calendar26Button.alpha = 0.5
+    calendar26Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar27Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar27Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/4.5,
+            y = 1038,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar27ButtonClicked          
+        } )
+
+    calendar27Button.alpha = 0.5
+    calendar27Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar28Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar28Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/2.76,
+            y = 1038,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar28ButtonClicked          
+        } )
+
+    calendar28Button.alpha = 0.5
+    calendar28Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar29Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar29Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/2,
+            y = 1038,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar29ButtonClicked          
+        } )
+
+    calendar29Button.alpha = 0.5
+    calendar29Button.isVisible = false
+
+    -----------------------------------------------------------------------------------------   
+
+    calendar30Button = widget.newButton( 
+        {   
+
+            width = 100,
+            height = 78,
+
+            id = "calendar30Button",
+
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth/1.559,
+            y = 1038,
+
+            -- Insert the images here
+            defaultFile = "Images/Popup/partial.png",
+            overFile = "Images/Popup/blueBox.png",
+
+            -- When the button is released, call the add screen transition function
+            onRelease = calendar30ButtonClicked          
+        } )
+
+    calendar30Button.alpha = 0.5
+    calendar30Button.isVisible = false
 
     -------------------------------------------------------------------------------
 
@@ -920,9 +2124,43 @@ function scene:create( event )
 
         calendar:toFront()
         x:toFront()
-        calendarHideButton:toFront()
+        calendarHideButton:toFront() 
 
         sceneGroup:insert( calendar2Button )
+        sceneGroup:insert( calendar3Button )
+        sceneGroup:insert( calendar4Button )
+        sceneGroup:insert( calendar5Button )
+        sceneGroup:insert( calendar6Button )
+        sceneGroup:insert( calendar7Button )
+        sceneGroup:insert( calendar8Button )
+        sceneGroup:insert( calendar9Button )
+        sceneGroup:insert( calendar10Button )
+        sceneGroup:insert( calendar11Button )
+        sceneGroup:insert( calendar12Button )
+        sceneGroup:insert( calendar13Button )
+        sceneGroup:insert( calendar14Button )
+        sceneGroup:insert( calendar15Button )
+        sceneGroup:insert( calendar16Button )
+        sceneGroup:insert( calendar17Button )
+        sceneGroup:insert( calendar18Button )
+        sceneGroup:insert( calendar19Button )
+        sceneGroup:insert( calendar20Button )
+        sceneGroup:insert( calendar21Button )
+        sceneGroup:insert( calendar22Button )
+        sceneGroup:insert( calendar23Button )
+        sceneGroup:insert( calendar24Button )
+        sceneGroup:insert( calendar25Button )
+        sceneGroup:insert( calendar26Button )
+        sceneGroup:insert( calendar27Button )
+        sceneGroup:insert( calendar28Button )
+        sceneGroup:insert( calendar29Button )
+        sceneGroup:insert( calendar30Button )
+
+        sceneGroup:insert( typeOption1show )
+        typeOption1show.isVisible = false
+
+        sceneGroup:insert( classOption1Textshow )
+        classOption1Textshow.isVisible = false
 end
 
 
@@ -938,6 +2176,12 @@ function scene:show( event )
     local sceneGroup = self.view
 
     local phase = event.phase
+
+    local function here ()
+
+        print(dayNumber)
+    end
+    --Runtime:addEventListener( "enterFrame", here )
 
     --dueDateDisplay( )
     --daysBetweenDisplay( )

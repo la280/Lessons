@@ -349,14 +349,14 @@ end
 -----------------------------------------------------------------------------------------
 
 -- Create a function that moves onto the next task since the current one is completed.
-function checkButtonClicked( ) -- *******************************
+-- function checkButtonClicked( ) -- *******************************
 
-	table.remove(t2, 1 )
-	todayTask = t2[1]
-	todayTaskText.text = todayTask
-    print("*** Today's task =", todayTask) 
+-- 	table.remove(t2, 1 )
+-- 	todayTask = t2[1]
+-- 	todayTaskText.text = todayTask
+--     print("*** Today's task =", todayTask) 
 
-    option2TaskNumber = table.maxn( t2 )
+--     option2TaskNumber = table.maxn( t2 )
 
-	dailyWorkloadCalculation( )
-end 
+-- 	dailyWorkloadCalculation( )
+-- end 

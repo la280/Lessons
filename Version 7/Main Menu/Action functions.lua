@@ -64,3 +64,50 @@ function tabButtonClicked( )
         okayButton.isVisible = true
         okayButton:toFront()
 end 
+
+---------------------------------------------------------------------------------------------------------
+
+function tasksDisplayButtonClicked ()
+
+    if ( todayTask ~= "") then 
+
+        if (todayTaskText.text == "Completed!") then
+
+            tasksDisplayHideButtonClicked()
+
+        elseif ( todayTaskText.text ~= "Completed!") then
+
+            tasksDisplayHideButton.isVisible = true
+            tasksDisplayButton.isVisible = false
+
+            toDo1.isVisible = true
+            toDo2.isVisible = true
+            toDo3.isVisible = true
+            toDo4.isVisible = true
+            toDo5.isVisible = true
+            toDo6.isVisible = true
+
+            toDo1:toFront()
+            toDo2:toFront()
+            toDo3:toFront()
+            toDo4:toFront()
+            toDo5:toFront()
+            toDo6:toFront()
+        end
+    end
+end
+
+---------------------------------------------------------------------------------------------------------
+
+function tasksDisplayHideButtonClicked ()
+
+    tasksDisplayHideButton.isVisible = false
+    tasksDisplayButton.isVisible = true
+
+    toDo1.isVisible = false
+    toDo2.isVisible = false
+    toDo3.isVisible = false
+    toDo4.isVisible = false
+    toDo5.isVisible = false
+    toDo6.isVisible = false
+end

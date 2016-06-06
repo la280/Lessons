@@ -520,8 +520,8 @@ function scene:hide( event )
 
             print("-- HIDE =--")
 
-            --newTaskTextField:removeSelf()
-            --newTaskPositionTextField:removeSelf()
+            newTaskTextField:removeSelf()
+            newTaskPositionTextField:removeSelf()
 
     -----------------------------------------------------------------------------------------
 

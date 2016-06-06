@@ -136,7 +136,7 @@ daysFromOctober = 404
 daysFromNovember = 434
 daysFromDecember = 465
 
-daysFromOurMonth = daysFromMay
+daysFromOurMonth = daysFromJune  
 
 ---------------------------------------------------------------------------------------------------------
 -- Date
@@ -150,6 +150,13 @@ daysBetweenTodayAndDue2 = 0
 
 monthName = os.date("%B")
 dayNumber = os.date("%d")
+
+dayNumberManipulate = os.date("%d")
+
+dayNumberManipulate1 = "31"
+dayNumberManipulate2 = "0" .. os.date("%d") - 1
+dayNumberManipulate3 = "0" .. os.date("%d") + 1
+dayNumberManipulate4 = "0" .. os.date("%d") + 2
 
 -- Number of days in each month
 daysInThisMonth = 30
@@ -182,7 +189,7 @@ daysFromOctober = 304
 daysFromNovember = 334
 daysFromDecember = 365
 
-daysFromOurMonth = daysFromMay 
+daysFromOurMonth = daysFromJune 
 
 weekDayName = ""
 weekDayName1 = ""
