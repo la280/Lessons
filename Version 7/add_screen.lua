@@ -1235,24 +1235,24 @@ function scene:create( event )
     typeMenuButton = widget.newButton( 
         {   
 
-            width = 270,
-            height = 68,
+            width = 263,
+            height = 50,
 
             id = "typeMenuButton",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/1.39,
-            y = 545,
+            x = display.contentWidth/1.395,
+            y = 550,
 
             -- Insert the images here
-            defaultFile = "Images/Buttons/buttonGreen.jpeg",
+            defaultFile = "Images/Menu Blocks/Basic.png",
             overFile = "Images/Menu Blocks/BasicPressed.png",
 
             -- When the button is released, call the add screen transition function
             onRelease = typeMenuFunctionsClicked          
         } )
 
-    typeMenuButton.alpha = 0.23
+    typeMenuButton.alpha = 0.4
 
     -----------------------------------------------------------------------------------------   
 
@@ -1265,8 +1265,8 @@ function scene:create( event )
             id = "typeMenuOption1Button",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/1.39,
-            y = 612,
+            x = display.contentWidth/1.396,
+            y = 610,
 
             -- Insert the images here
             defaultFile = "Images/Menu Blocks/Basic.png",
@@ -1284,8 +1284,8 @@ function scene:create( event )
     classMenuButton = widget.newButton( 
         {   
 
-            width = 270,
-            height = 68,
+            width = 263,
+            height = 50,
 
             id = "classMenuButton",
 
@@ -1301,7 +1301,7 @@ function scene:create( event )
             onRelease = classMenuFunctionsClicked          
         } )
 
-    classMenuButton.alpha = 0.5
+    classMenuButton.alpha = 0.4
 
     -----------------------------------------------------------------------------------------   
 
@@ -1314,8 +1314,8 @@ function scene:create( event )
             id = "classMenuOption1Button",
 
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/1.39,
-            y = 763,
+            x = display.contentWidth/1.394,
+            y = 759,
 
             -- Insert the images here
             defaultFile = "Images/Menu Blocks/Basic.png",
@@ -1339,7 +1339,7 @@ function scene:create( event )
 
             -- Set its position on the screen relative to the screen size
             x = display.contentWidth/1.39,
-            y = 910,
+            y = 922,
 
             -- Insert the images here
             defaultFile = "Images/Menu Blocks/Basic.png",
@@ -1349,7 +1349,7 @@ function scene:create( event )
             onRelease = calendarShowButtonClicked          
         } )
 
-    calendarShowButton.alpha = 0.4
+    calendarShowButton.alpha = 0.25
 
     -----------------------------------------------------------------------------------------   
 
@@ -2201,9 +2201,9 @@ function scene:show( event )
         --okayButtonText:addEventListener('tap', okayButtonClicked) 
         
         -- Create text field (horizontal, vertical, width, height)
-        customNameTextField = native.newTextField( display.contentWidth/2, 403, 590, 70 )
-        customNameTextField:setTextColor(60/255, 50/255, 100/255)
-        customNameTextField:addEventListener("userInput", textListener) 
+        --customNameTextField = native.newTextField( display.contentWidth/2, 403, 590, 70 )
+        --customNameTextField:setTextColor(60/255, 50/255, 100/255)
+        --customNameTextField:addEventListener("userInput", textListener) 
 
         if (customName ~= "") then
             
